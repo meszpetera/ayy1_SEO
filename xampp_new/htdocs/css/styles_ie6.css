@@ -1,0 +1,12 @@
+/*#jsTextScroll {
+  display: none;
+}*/
+
+#upTextScrollParent
+{
+overflow:hidden;
+}
+
+/*#cssTextScroll {
+  display: block;
+}*/

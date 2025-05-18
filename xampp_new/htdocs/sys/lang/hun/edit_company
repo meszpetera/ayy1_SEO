@@ -1,0 +1,67 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+body
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+</style>
+</head>  
+<body>
+<div style="font-weight:bold;">
+{$SUCCES}
+</div>
+<form method="post" action="edit_company.php" accept-charset="utf-8"> 
+  <div style="height:48px; width:250px;">
+    <label>
+      Név:<br />
+      <input style="width:250px;" type="text" id="comp_name" name="comp_name" value="{$COMPANY_NAME}" />
+    </label>
+  </div>
+  <div style="height:48px; width:250px;">
+    <label>
+      Város:<br />
+      <input style="width:250px;" type="text" id="comp_city" name="comp_city" value="{$COMPANY_CITY}" />
+    </label>
+  </div>
+  <div style="height:48px; width:250px;">
+    <label>
+      Irányítószám:<br />
+      <input style="width:250px;" type="text" id="comp_zip" name="comp_zip" value="{$COMPANY_ZIP}" />
+    </label>
+  </div>
+  <div style="height:48px; width:250px;">
+    <label>
+      Cím:<br />
+      <input style="width:250px;" type="text" id="comp_addr" name="comp_addr" value="{$COMPANY_ADDRE}" />
+    </label>
+  </div>
+  <div style="height:48px; width:250px;">
+    <label>
+      Telefonszám:<br />
+      <input style="width:250px;" type="text" id="comp_phone" name="comp_phone" value="{$COMPANY_PHONE}" />
+    </label>
+  </div>
+  <div style="height:48px; width:250px;">
+    <label>
+      Fax:<br />
+      <input style="width:250px;" type="text" id="comp_fax" name="comp_fax" value="{$COMPANY_FAX}" />
+    </label>
+  </div>
+  <div style="height:48px; width:250px;">
+    <label>
+      Email:<br />
+      <input style="width:250px;" type="text" id="comp_mail" name="comp_mail" value="{$COMPANY_EMAIL}" />
+    </label>
+  </div>
+  <input type="submit" value="Mehet" />
+  <input type="hidden" value="{$COMPANY_ID}" id="comp_id" name="comp_id" />
+</form>
+</body>
+</html>

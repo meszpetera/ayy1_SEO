@@ -1,0 +1,86 @@
+﻿<div id="dShowBox"> 
+  <div style="width:130px;margin:5px;font-size:10px;">
+    <p style="font-weight:bold;line-height:13px;text-align:left;">{$finished}</p>
+    <p style="text-align:left;line-height:13px;">{$zoom}</p>
+  </div>
+  <div style="width:140px;height:90px;position:absolute;right:10px;top:3px;font-size:10px;vertical-align:middle;">
+    <a href="{$imagelink}" class="highslide" onclick="return hs.expand(this);" id="promo_link">
+      <img alt="" src="{$defaultpic}" style="width:140px;height:90px;" id="promo_image" />
+    </a>
+    <input type="hidden" value="{$defaultid}" id="promo_id" /> 
+  </div>
+</div>
+
+<script type="text/javascript">setTimeout("change_to_next()", speed);</script>
+
+<p style="font-size: 32px; padding: 0 0 0 0; margin: 10px 0 0 0">PALETTENHEBEWERKE</p>
+
+<table>
+  <tr style="height: 180px">
+    <td style="width: 280px">
+      <img src="img/targ1.jpg" alt="" />
+    </td>
+    <td>
+      <h1>NEU- UND AUSSTELLUNGSGABELSTAPLER</h1>
+      <p>
+        Unsere Gesellschaft als ein markenunabhängiges Vertriebsunternehmen kauft regelmäßig Neu- und Ausstellungsgabelstapler (mit wenigen Betriebsstunden) von den beliebtesten japanischen und deutschen Typen /TOYOTA KOMATSU MITSUBISHI NISSAN LINDE STILL JUNGHEINRICH/ ein und hält diese auf Lager. Nach Bedarf können wir auch Produkte von anderen Herstellern anschaffen, in diesem Fall wird der eventuell höhere Verkaufspreis mit verlängerter Austauschbarkeitsgarantie und mit besonders günstigen Servicepreisen kompensiert. 
+      </p>
+    </td>
+  </tr>
+<tr style="height: 180px"> 
+<td style="width: 280px">
+      <img src="img/targ2.jpg" alt="" />
+    </td> 
+    <td>
+      <h1>GABELSTAPLER KOMATSU</h1>
+      <p>
+        Die weltweit besonders beliebten Gabelstapler KOMATSU bewährten sich schon auch in Ungarn. Die einfachen aber doch modernen, dynamischen, bedienungsfreundlichen und zuverlässigen Maschinen – sich aus der japanischen Herkunft ergebender – guter Qualität mit niedrigem Wartungsbedarf gereichen Tausenden der Anwender zu voller Zufriedenheit. In unserem Lieferprogramm befinden sich Gasstapler 1,5 – 8 t, Dieselstapler 1,5 – 8 t und Elektrostapler 1 – 5 Tonnen.
+      </p>
+    </td>
+    </tr>
+    <tr style="height: 180px">
+    <td style="width: 280px">
+      <img src="img/targ3.jpg" alt="" />
+    </td>
+    <td>
+      <h1>HANDBETATIGTE PALETTENHEBER, "FRÖSCHE"</h1>
+      <p>
+        Unser Lieferprogramm besteht aus verschiedenen Normal- und Spezialpalettenheber mit Farbanstrich oder in rostfreier Ausführung mit verschiedensten Gabelmaßen und Hubhöhen. Neben den vollständigen Sortimenten der deutschen Fa. FRANZ KAHL und der belgischen Fa. EUROLIFTER, die auch auf den Produktpaletten multinationaler Staplervertriebsunternehmen vornehme Positionen haben, gehört auch der Palettenheber SAXONLIFT mit einer Tragkraft von 2,5 t zu den Spezialprodukten unserer Gesellschaft, aber auch billigere chinesische Modelle sind im Sortiment der Gesellschaft zu finden. Wir bieten regelmäßig billige, gebrauchte und überholte Maschinen an. Umfassende Service-Leistungen und Versorgung mit Ersatzteilen. Nach Bedarf übernehmen wir auch die Herstellung von Palettenhebern für Einzelnzwecke. 
+      </p>
+    </td>
+    </tr>
+    <tr style="height: 180px">
+    <td style="width: 280px">
+      <img src="img/targ4.jpg" alt="" />
+    </td>
+    <td>
+      <h1>GEBRAUCHTE UND ÜBERHOLTE GABELSTAPLER</h1>
+      <p>
+        Wir haben mehr als 400 gebrauchte und überholte Elektro-, Diesel- oder Gasstapler sowie von außen betätigte Flurförderzeuge von verschiedenen Typen, mit einer Tragkraft von 1 – 8 Tonnen. Fast für alle Maschinen übernehmen wir Garantie, umfassende Service-Leistungen und Versorgung mit Ersatzteilen oder können diese abgelöst werden. Für fast allen Typen können Adapter und Hebezeuge wunschgemäß gewählt werden. Beim Kauf einer Maschine rechnen wir die alte Anlage an. <br />
+        Wir kaufen betriebsfähige und betriebsunfähige Flurförderzeuge, Hubwagen, Stapler und Palettenheber auf.
+      </p>
+    </td>
+    </tr>
+    <tr style="height: 180px">
+    <td style="width: 280px">
+      <img src="img/targ5.jpg" alt="" />
+    </td>
+    <td>
+      <h1>SPEZIALGABELSTAPLER UND MASCHINEN</h1>
+      <p>
+        Nach Bedarf schaffen wir Hubwagen für Spezialzwecke – mit Seitengabeln oder Teleskop, Zugförderer, Lieferkarren, Geländehubwagen, Hubwagen für Containerlieferung oder zur Bedienung von Hochlagern oder Sonderkonstruktionen – an. 
+      </p>
+    </td>
+    </tr>
+    <tr style="height: 180px">
+    <td style="width: 280px">
+      <img src="img/targ6.jpg" alt="" />
+    </td>
+    <td>
+      <h1>GABELSTAPLER UND HUBWAGEN ZUR VERMIETUNG</h1>
+      <p>
+        Mit dem immer größeren Miethubwagenpark sind wir bereit, die verschiedensten Förderungs- und Hebeaufgaben erfüllen zu können. Das Rückgrat unseres Maschinenparks mit Kapazität 1 – 8 Tonnen bilden die Motorenstapler KOMATSU sowie die Elektrostapler von LINDE und JUNGHEINRICH. Hubwagen und Palettenhebern für Tages-, Wochen- oder Monatsvermietung. Bedeutende Vergünstigungen bei langfristiger Miete. Für unsere Großkunden bieten wir Mietkonstruktionen mit umfassendem Service-Dienst und mit Referenzen an, wobei die langfristige Kosten im Voraus kalkuliert werden können. 
+      </p>
+    </td>
+  </tr>
+</table>

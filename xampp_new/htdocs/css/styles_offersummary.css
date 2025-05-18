@@ -1,0 +1,74 @@
+.dOfferSummaryHeader{
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 140%;
+  margin-bottom: 20px;
+  margin-left:60px;
+  width:741px;
+}
+
+.dIDColumn{
+  width: 20px;
+  height: 50px;
+  margin:0px;
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 120%;
+}
+
+.dInfoColumn{
+  width:589px;
+  height: 50px;
+  margin:0px;
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 120%;
+}
+
+.dPriceColumn{
+  width: 100px;
+  height: 50px;
+  margin:0px;
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 120%;
+}
+
+.dOfferSummaryFooter{
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 140%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.dPrevReqsTable td, th
+{
+display: table-cell;
+}
+
+.dPrevReqsTable tr
+{
+display: table-row;
+}
+
+.dPrevReqsTable
+{
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  margin-top:10px;
+  width:741px;
+  /*display:none;*/
+  background:#f00;
+  border-collapse:collapse;
+}
+
+#prev_reqs
+{
+  display:none;
+}
+
+.Rows
+{
+  height:50px;
+}

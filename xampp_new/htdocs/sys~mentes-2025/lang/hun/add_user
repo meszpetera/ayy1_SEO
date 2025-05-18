@@ -1,0 +1,79 @@
+<div class="error" style="height:40px; color:#900; font-weight:bold">
+{$ERROR}
+</div>
+<form style="width:60%" method="get" action="sys/registration.php">
+  <div style="display:none">
+    <strong>Belépési adatok:</strong> (ezeket a rendszer automatikusan tölti ki)<!----------------------------------------->
+    <hr/>
+    <div style="height:48px; width:180px;">
+      <label>
+        Ügyintéző bejelentkezési neve:<br />
+        <input type="text" id="username" name="username" disabled />
+      </label>
+    </div>
+    
+    <div style="height:48px; width:180px; float:left;">
+      <label>
+        Jelszó:<br />
+        <input type="hidden" id="password" name="password" value="12345678" />
+        <input type="text" id="password" name="password_" value="" disabled />
+        
+      </label>
+    </div>
+    
+    <div style="height:48px;">
+      <label>
+        Jelszó újra:<br />
+        <input type="hidden" id="password_re" name="password_re" value="12345678" />
+        <input type="text" id="password_re" name="password_re_" value="" disabled />
+      </label>
+  </div>  
+  <br />
+  <br />
+  </div>
+<strong>Személyes adatok:</strong><!---------------------------------------->
+  <hr/>
+  <div style="height:48px; width:180px;">
+    <label>
+      Teljes név:<br />
+      <input type="text" id="realname" name="realname"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px;">
+    <label>
+      Email:<br />
+      <input type="text" id="email" name="email"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px; float:left;">
+    <label>
+      Telefon:<br />
+      <input type="text" id="phone" name="phone"/>
+    </label>
+  </div>
+  <div style="height:48px;">
+    <label>
+      Fax:<br />
+      <input type="text" id="fax" name="fax"/>
+    </label>
+  </div>
+  
+  A telefonszámot "+országkód telefonszám" formában kell megadni (pl.: +36 801234567).<br />
+  <br />
+  <strong>Céges adatok:</strong><!-------------------------------------------->
+  <hr/>
+  <div style="height:48px; width:180px;">
+    <label>
+      Cég neve:<br />
+      {$COMPANIES}
+    </label>
+  </div>
+
+  <br />
+  <hr />
+  <br />
+  <input type="hidden" value="1" name="adduser" id="adduser" />
+  <input type="submit" value="{$REG}" />
+</form>

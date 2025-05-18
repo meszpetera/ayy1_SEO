@@ -1,0 +1,36 @@
+suPHP_ConfigPath /home/www.saxonrt.eu/.php.ini
+<Files .php.ini>
+order allow,deny
+deny from all
+</Files>
+DirectoryIndex index.html index.php
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(robots.txt)$ robots.php [QSA]
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(sitemap.xml)$ sitemap.php [QSA]
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(rss.xml)$ rss.php [QSA]
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\.ajax$ ajax.php [QSA]
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\.html$ index.php [QSA]
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ reload.php [QSA]
+</IfModule>
+<FilesMatch "\.(htm|html|css|js|php)$">
+AddDefaultCharset UTF-8
+DefaultLanguage hu-HU
+</FilesMatch>

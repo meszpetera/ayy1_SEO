@@ -1,0 +1,1 @@
+<?php    include_once("common.php");        if(isauth())    {        $mysql = get_connection();        $mysql->execute($sql['setutf']);        $stmt = $mysql->prepare($sql['flyer_setemail']);        $stmt->bind_params($_REQUEST['flyer_id']);                $stmt->execute();        redirect_in_site("?page=flyer_editor&lang=hun");    }?>

@@ -1,0 +1,63 @@
+<div id="dShowBox"> 
+  <div style="width:130px;margin:5px;font-size:10px;">
+    <p style="font-weight:bold;line-height:13px;text-align:left;">{$finished}</p>
+    <p style="text-align:left;line-height:13px;">{$zoom}</p>
+  </div>
+  <div style="width:140px;height:90px;position:absolute;right:10px;top:3px;font-size:10px;vertical-align:middle;">
+    <a href="{$imagelink}" class="highslide" onclick="return hs.expand(this);" id="promo_link">
+      <img alt="" src="{$defaultpic}" style="width:140px;height:90px;" id="promo_image" />
+    </a>
+    <input type="hidden" value="{$defaultid}" id="promo_id" /> 
+  </div>
+</div>
+
+<script type="text/javascript">setTimeout("change_to_next()", speed);</script>
+
+<p style="font-size: 32px; padding: 0 0 0 0; margin: 10px 0 0 0">SERVICE</p>
+<table>
+  <tr style="height: 180px">
+    <td style="width: 280px">
+      <img src="img/szerviz1.jpg" alt="" />
+    </td>
+    <td>
+      <h1>KUNDENDIENST</h1>
+      <p>Hinsichtlich aller Fragen in Verbindung mit Hubwagen stehen unsere Kollegen an den zentralen und regionalen Kundendienststellen Ihnen gerne zur Verfügung. Im Falle von Problemen, die telefonisch nicht geklärt werden können, versuchen unsere Techniker und Monteure vor Ort eine Lösung für das Problem zu finden. Nach Bedarf übernehmen wir die Vermittlung und Kontakthaltung zu allen heimischen und internationalen Hubwagenvertriebsunternehmen und Werkstatten. Unsere Disponenten und Serviceleiter unterhalten telefonisch die Beziehung zu den Partnern oder suchen sie persönlich auf. Die Preisanfragen bzw. die eventuellen Reklamationen werden in jedem Fall schriftlich beantwortet.</p>
+    </td>
+  </tr>  
+  <tr style="height: 180px">
+    <td style="width: 280px">
+      <img src="img/szerviz2.jpg" alt="" />
+    </td>
+    <td>
+      <h1>ZENTRALKUNDENDIENSTSTELLE</h1>
+      <p>In der Werkstatt in Vecsés führen 20 qualifizierte Fachleute die Überholung der Komponente und Maschineneinheiten durch. An demselben Standort funktionieren auch Spanabhebungswerkstatt, Schlosserei, Anstrichwerkstatt und ein Montagebetrieb, wo Ersatzteile auch hergestellt werden. Der technische Standard der reparierten und überholten Hubwagen wird in jedem Fall den Ansprüchen der Kunden entsprechend, unter Berücksichtigung der Norm ISO 9002 ausgestaltet. Wir bauen die Dieselstapler auf Gasbetrieb, die Elektrostapler auf Elektronik (Curtis-Betrieb) um. Wir übernehmen das Pressen von Elastik- und Vollgummireifen und Laufflächenerneuerung. Wir überholen und reparieren Adapter von allen Typen. Zu unseren Spezialitäten gehören Überholung und Umbau von großen Maschineneinheiten, Motoren, Getrieben, angetriebenen und gesteuerten Brücken und Hebevorrichtungen, ästhetische Überholung von Hubwagen, die in gutem technischem Zustand sind, sowie Überholung und Restaurierung alter Maschinen von musealer Art.</p>
+    </td>
+  </tr>  
+  <tr style="height: 180px">
+    <td style="width: 280px">
+      <img src="img/szerviz3.jpg" alt="" />
+    </td>
+    <td>
+      <h1>MOBILKUNDENDIENST</h1>
+      <p>Unser Kundendienst steht mit 16 modern ausgerüsteten Servicewagen und mit qualifizierten Fachleuten unseren Partnern zur Verfügung. Im Falle einer Störung beginnen wir innerhalb von 24 Stunden nach dem Erhalt des Auftrags mit der Reparatur der verschiedensten Typen vor Ort, auf dem ganzen Gebiet des Landes, wobei auch die nötigen Ersatzteile bereitgestellt werden. Bis auf die Generalüberholungen kann der Transport unterbleiben, da die Maschineneinheiten möglicherweise an Ort und Stelle ausgetauscht werden. Im Rahmen eines Pauschalvertrags überprüfen wir regelmäßig den technischen Zustand der Anlagen unserer Partner. Um den Stillstand der Maschinen vermeiden zu können, führen wir die Arbeiten zu einem, im Voraus abgestimmten Zeitpunkt durch bzw. stellen wir eine Auswechselmaschine zur Verfügung.</p>
+    </td>
+  </tr>    
+  <tr style="height: 180px">
+    <td style="width: 280px">
+      <img src="img/szerviz4.jpg" alt="" />
+    </td>
+    <td>
+      <h1>TECHNISCHE ÜBERPRÜFUNG DER MASCHINEN</h1>
+      <p>Unsere Hubwagenspezialisten führen die im Standard vorgeschriebenen Konstruktions- und sicherheitstechnischen Prüfungen am Standort des Auftraggebers durch. Wir übernehmen die Nostrifikation von Hubwagen und Palettenhebern, die Einholung oder Ersetzung der vorgeschriebenen Dokumentationen und Bedienungsanweisungen (Maschinenbücher). Wir verfolgen die Gültigkeit der technischen Prüfungen des Hubwagenparks und vor dem Ablauf machen wir den Kunden darauf aufmerksam. Wir übernehmen die technische Prüfung der von uns reparierten und überprüften Hubwagen oder kompletten Hubwagenparks mit bedeutendem Preisnachlass. Wir führen die Arbeitsschutz- und sicherheitstechnische Reparatur und Ersetzung der Hebemaschinen durch.</p>
+    </td>
+  </tr>   
+  <tr style="height: 180px">
+    <td style="width: 280px">
+      <img src="img/szerviz5.jpg" alt="" />
+    </td>
+    <td>
+      <h1>SPEZIELLE DIENSTLEISTUNGEN</h1>
+      <p>Nach Bedarf übernehmen wir den Betrieb von vollständigen Hubwagenparks mit vor Ort eingestellten Fachleuten und örtlichem Ersatzteilelager. Möglichkeit von Pauschalverträgen – verlängerte Garantiezeit – nach einer Überholung. Servicewagen von dem nächstliegenden Standort aus. Kostenlose Lagerhaltung von Ersatzteilen für die Maschinen unserer Vertragspartner. Transport der Hubwagen und Maschinen mit eigenen Lastkraftwagen. Finanzierungs-, Abschlagszahlungs- und Bartermöglichkeiten.</p>
+    </td>
+  </tr>   				
+</table>

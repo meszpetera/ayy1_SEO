@@ -1,0 +1,14 @@
+<Files .php.ini>
+order allow,deny
+deny from all
+</Files>
+DirectoryIndex index.html index.php
+<IfModule mod_rewrite.c>
+	#RewriteEngine on
+	#RewriteCond %{HTTP_HOST} !^saxonrt\.hu
+	#RewriteRule ^(.*)$ https://saxonrt.hu/$1 [R=301,L]
+</IfModule>
+<FilesMatch "\.(htm|html|css|js|php)$">
+AddDefaultCharset UTF-8
+DefaultLanguage hu-HU
+</FilesMatch>

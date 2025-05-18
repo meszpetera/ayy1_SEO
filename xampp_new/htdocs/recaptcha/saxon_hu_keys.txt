@@ -1,0 +1,9 @@
+Domain Name: 	www.saxonrt.hu
+
+This is a global key. It will work across all domains.
+Public Key: 	6LdAmdcSAAAAAOmXc0bbnJW1t4AZB2Vq0dZmEFf-
+
+Use this in the JavaScript code that is served to your users
+Private Key: 	6LdAmdcSAAAAAFe-PyH1D347m0vJEyt1pevX-IQC
+
+Use this when communicating between your server and our server. Be sure to keep it a secret.

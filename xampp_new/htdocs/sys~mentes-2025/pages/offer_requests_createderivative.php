@@ -1,0 +1,1 @@
+<?php	include_once("common.php");	if (isauth())	{		if (isset($_REQUEST['offerid']))		{			$_SESSION['offerwizard_source-offer-id'] = $_REQUEST['offerid'];		}	}?>

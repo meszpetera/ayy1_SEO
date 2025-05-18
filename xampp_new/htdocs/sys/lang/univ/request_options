@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+ <link href="../css/highslide.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/framework/prototype.js"></script>
+  <script type="text/javascript" src="../js/framework/scriptaculous.js"></script>
+  <script type="text/javascript" src="../js/highslide/highslide.js"></script>
+
+  <script type="text/javascript">
+    hs.graphicsDir = '../img/hs_imgs/';
+    hs.outlineType = 'rounded-green';
+    hs.showCredits = false;
+    hs.dimmingDuration = 200;
+    hs.dimmingOpacity = 0.75;
+    hs.registerOverlay({
+      overlayId: 'closebutton',
+      position: 'top right',
+      fade: 2, // fading the semi-transparent overlay looks bad in IE
+      useOnHtml: true
+    });
+    hs.cacheAjax = false;
+
+ hs.Expander.prototype.onBeforeClose = function (sender) {
+    
+   //return confirm("Do you really want to close this nice image?");
+    window.location.reload();
+}   
+    hs.Expander.prototype.onBeforeExpand = function (sender) 
+    {
+      if (!(sender.custom === undefined))
+      {
+        if (!(sender.custom.onExpand === undefined))
+        {
+          try
+          {
+            sender.custom.onExpand();
+          }
+          catch (error)
+          {
+            alert("Script execution failed.\nThe given error message is the following: \"" + error + "\"\n\nThe failed script is listed below:\n" + sender.custom.onExpand);
+          }
+        }
+      }
+      return true;
+    }  
+    
+    hs.Expander.prototype.onAfterClose = function (sender) 
+    {
+      if (!(sender.custom === undefined))
+      {
+        if (!(sender.custom.onClosed === undefined))
+        {
+          try
+          {
+            sender.custom.onClosed();
+          }
+          catch (error)
+          {
+            alert("Script execution failed.\nThe given error message is the following: \"" + error + "\"\n\nThe failed script is listed below:\n" + sender.custom.onClose);
+          }      
+        }
+      }
+      return true;
+    }
+  </script>
+  <script type="text/javascript">
+    function InvokeBlocking_Reload(url)
+    {
+      new Ajax.Request(url, {
+        method: 'get',
+        onSuccess: function(transport) 
+          {
+            window.location.reload();
+          },
+        onFailed :function()
+          {
+            alert("A mûvelet nem sikerült. Kérem, próbálja újból.");
+          }
+        });
+    }  
+
+    function InvokeBlocking_HSClose(url)
+    {
+      new Ajax.Request(url, {
+        method: 'get',
+        onSuccess: function(transport) 
+          {
+            hs.close(this);
+          },
+        onFailed :function()
+          {
+            alert("A mûvelet nem sikerült. Kérem, próbálja újból.");
+          }
+        });
+    }           
+  </script>
+</head>
+<body style="font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 12px;">
+{$TEXT}
+<form method="post" action="ajax_set_offerreqest_options.php">
+
+  <div style="width:700px; height:34px;">
+    <div style="width:100px; float:left; text-align:right; padding-right:12px">
+      fizetési mód:
+    </div>
+    <div>
+      {$METHOD_SELECT}&nbsp;{$EDIT}&nbsp;{$INSERT}
+    </div>
+  </div>
+  <div style="width:700px; height:34px;">
+    <div style="width:100px; float:left; text-align:right; padding-right:12px">
+      szállítás módja:
+    </div>
+    <div>
+      {$DELIVERYMETHOD}&nbsp;{$EDIT_DELIVERY}&nbsp;{$INSERT_DELIVERY}
+    </div>
+  </div>
+  <div style="width:400px; height:34px;">
+    <div style="width:100px; float:left; text-align:right; padding-right:12px">
+      foglaló:
+    </div>
+    <div>
+        <input type="text" name="reserve" value="{$RESERVE}" />%
+    </div>
+  </div>
+  <div style="width:600px; height:34px;">
+    <div style="width:100px; float:left; text-align:right; padding-right:12px">
+      euro árfolyam:
+    </div>
+    <div>
+        <input type="text" name="euro" value="{$EURO}" /> Ft/€ (Csak Forintos ajánlathoz!)
+    </div>
+  </div>
+  <div style="width:400px; height:34px;">
+    <div style="width:100px; float:left; text-align:right; padding-right:12px">
+      érvényesség:
+    </div>
+    <div>
+        <input type="text" name="lifetime" value="{$LIFETIME}" /> nap
+    </div>
+  </div>
+  <div style="width:400px; height:34px;">
+    <div style="width:100px; float:left; text-align:right; padding-right:12px">
+      nyelv:
+    </div>
+    <div>
+      <select name="language">
+        <option value="hun" {$HUN}/>Magyar</option>
+        <option value="eng" {$ENG}/>Angol</option>
+      </select>
+    </div>
+  </div>
+  <div style="width:400px; height:34px;">
+    <div style="width:100px; float:left; text-align:right; padding-right:12px">
+      pdf hossz:
+    </div>
+    <div>
+      <select name="pdf">
+        <option value="0" {$SZURT}/>Szűrt adat</option>
+        <option value="1" {$OSSZES}/>Összes adat</option>
+      </select>
+    </div>
+  </div>
+  <div style="width:400px; height:34px;">
+    <div style="width:100px; float:left; text-align:right; padding-right:12px">
+      aláírás:
+    </div>
+    <div>
+      <select name="signature">
+        <option value="0" />Szász Imre</option>
+        <option value="1" />Szász Attila</option>
+        <option value="2" />Nagy Attila</option>
+        <option value="3" />Eftimie Dorin</option>
+      </select>
+    </div>
+  </div>
+  <input type="hidden" value="{$OFFERID}" name="offerid" /><br />
+  <input type="submit" value="Mentés"/>
+</form>
+</body>
+<script type="text/javascript">
+
+
+hs.preserveContent = false;
+
+function param_make(sel, edit, insert) {
+   
+      var select = document.getElementById(sel);
+
+      if(select.value!="Válasszon"){
+
+        var u= document.getElementById(insert);
+        url=u.href;
+        url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+        u.href=url + "&param="+select.value;
+
+        var u1= document.getElementById(edit);
+        url=u1.href;
+        url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+        u1.href=url + "&param="+select.value;
+
+    }
+    else{
+         
+        var u= document.getElementById(insert);
+       
+        url=u.href;
+        url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+        u.href=url;
+
+        var u1= document.getElementById(edit);
+        url=u1.href;
+        url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+        u1.href=url;
+
+    }
+   
+}
+</script>

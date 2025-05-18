@@ -1,0 +1,94 @@
+<div style="display: flex; height: 100%;">
+    
+    <!-- Left Side (1/3 width) -->
+    <div style="flex: 1.1; display: flex; flex-direction: column;">
+		<a href="/?lang=hun&page=aktualis&__ispart=0"><img src="/pic/fooldal-left-01-hu.png" alt="Villás targoncák" style="width:290px;height:140px;margin-bottom: 10px" border="0" /></a><br/>
+		<a href="/?lang=hun&page=aktualis&__ispart=2"><img src="/pic/fooldal-left-02-hu.png" alt="Építőipari gépek" style="width:290px;height:140px;margin-bottom: 10px" border="0" /></a><br/>
+		<a href="/?lang=hun&page=aktualis&__ispart=5"><img src="/pic/fooldal-left-03-hu.png" alt="Vontatók, golfautók" style="width:290px;height:140px;margin-bottom: 10px" border="0" /></a><br/>
+		<a href="/?lang=hun&page=aktualis&__ispart=3"><img src="/pic/fooldal-left-04-hu.png" alt="Kézi emelők" style="width:290px;height:140px;margin-bottom: 10px" border="0" /></a><br/>
+    </div>
+    <!-- Right Side (2/3 width) -->
+    <div style="flex: 2; display: flex; flex-direction: column; justify-content: space-between;">
+	  <div style="flex: 1; display: flex; flex-direction: row; justify-content: space-between;">
+	  	<a href="/?lang=hun&page=aktualis&__ispart=4" style="vertical-align:top;display:inline-block;"><img src="/pic/kozep-01-hu.png" alt="Adapterek" width="175" height="85" border="0" /></a>
+		<a href="/?lang=hun&page=aktualis&__ispart=1" style="vertical-align:top;display:inline-block;"><img src="/pic/kozep-02-hu.png" alt="Fődarabok" width="185" height="85" border="0" /></a>
+		<a href="/?lang=hun&page=aktualis&__ispart=6" style="vertical-align:top;display:inline-block;"><img src="/pic/kozep-03-hu.png" alt="Kiegészítők" width="175" height="85" border="0" /></a>
+	  </div>
+
+	  <div style="flex: 1; display: flex; flex-direction: row;">
+	  	<div style="flex: 1; display: flex; align-items: center; justify-content: space-between; flex-direction: column; border: 1px solid #ffcc01">
+		    <div style="background: #ff0; width: 100%; height: 32px; font-weight: bold; font-size: 22px; text-align: center; margin-bottom: 2px;">20% ENGEDMÉNY</div>
+			<a href="/sys/aktualis_ajax_truck_details.php?lang=hun&id={$ws_id}"><img src="{$daily_offer_image}" alt="{$daily_offer_model}" style="border-style: none; width:100%; height:auto" /></a>
+			<div style="flex: 1; display: flex; flex-direction: row;">
+				<div style="width: 150px; float: left; padding-left: 4px; padding-top: 4px; font-weight: bold;">
+					{$daily_offer_make} {$daily_offer_model},<br />
+					{$daily_offer_type},<br />
+					{$daily_offer_status},<br />
+					{$daily_offer_fuel}, {$daily_offer_max-load} kg, {$daily_offer_max-height} mm
+				</div>
+				<div style="text-align:right; width: 108px; font-weight: bold; font-size: 12px; float: left; padding-right: 4px;">
+					{$daily_offer_saxon-id}<br />
+					<span style="color: #8F0000; text-decoration: line-through;">{$daily_offer_price} &euro; + ÁFA</span><br />
+					{$daily_offer_price_2} &euro; + ÁFA
+				</div>
+			</div>
+		</div>
+		<div style="flex: 0.05; display: flex;"></div>
+	  	<div style="flex: 1; display: flex; flex-direction: column;">
+		  <div style=" border: 1px solid #ffcc01">
+		  <div style="background: #ff0; width: 100%; height: 32px; font-weight: bold; font-size: 22px; text-align: center; margin-bottom: 2px;">SPECIÁLIS AJÁNLAT</div>
+		  <div style="flex: 1; display: flex; flex-direction: row;">
+		  	
+		  	<div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+			  	<div style="width: 138px; float:left;">
+					<a href="/sys/aktualis_ajax_truck_details.php?lang=hun&id={$so1_id}"><img src="{$so1_img}" alt="{$so1_name}" style="border-style: none; width:{$so1_w}px; height:{$so1_h}px" /></a>
+					{$so1_saxon-id}<br />
+					{$so1_name}<br />
+					{$so1_price} + ÁFA
+				</div>
+			</div>
+			<div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+				<div style="width: 134px; float:left">
+					<a href="/sys/aktualis_ajax_truck_details.php?lang=hun&id={$so2_id}"><img src="{$so2_img}" alt="{$so2_name}" style="border-style: none; width:{$so2_w}px; height:{$so2_h}px" /></a>
+					{$so2_saxon-id}<br />
+					{$so2_name}<br />
+					{$so2_price} + ÁFA
+				</div>
+			</div>
+		  </div>
+		  <div style="flex: 1; display: flex; flex-direction: row;">
+			<div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+				<div style="width: 138px; float:left;">
+					<a href="/sys/aktualis_ajax_truck_details.php?lang=hun&id={$so3_id}"><img src="{$so3_img}" alt="{$so3_name}" style="border-style: none; width:{$so3_w}px; height:{$so3_h}px" /></a>
+					{$so3_saxon-id}<br />
+					{$so3_name}<br />
+					{$so3_price} + ÁFA
+				</div>
+			</div>
+			<div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+				<div style="width: 134px; float:left">
+					<a href="/sys/aktualis_ajax_truck_details.php?lang=hun&id={$so4_id}"><img src="{$so4_img}" alt="{$so4_name}" style="border-style: none; width:{$so4_w}px; height:{$so4_h}px" /></a>
+					{$so4_saxon-id}<br />
+					{$so4_name}<br />
+					{$so4_price} + ÁFA
+				</div>
+			</div>
+		  </div>
+		  </div>
+		</div>
+	  </div>
+	  <div style="flex: 0.1; display: flex;"></div>
+      <div style="flex: 1; display: flex; align-items: center; justify-content: space-between;">
+	  		<a href="/sys/aktualis_ajax_truck_details.php?lang=hun&id={$rp0_id}" target="_blank" style="border: 1px solid #ffcc01"><img src="{$rp0_img}" alt="Kép egy ajánlott termékről 1/3" style="border-style: none; width:{$rp0_w}px; height:{$rp0_h}px" />
+			<br>
+			részletek</a>
+			<a href="/sys/aktualis_ajax_truck_details.php?lang=hun&id={$rp1_id}" target="_blank" style="border: 1px solid #ffcc01"><img src="{$rp1_img}" alt="Kép egy ajánlott termékről 2/3" style="border-style: none; width:{$rp1_w}px; height:{$rp1_h}px" />
+			<br>
+			részletek</a>
+			<a href="/sys/aktualis_ajax_truck_details.php?lang=hun&id={$rp2_id}" target="_blank" style="border: 1px solid #ffcc01"><img src="{$rp2_img}" alt="Kép egy ajánlott termékről 3/3" style="border-style: none; width:{$rp2_w}px; height:{$rp2_h}px" />
+			<br>
+			részletek</a>
+	  </div>
+    </div>
+    
+  </div>

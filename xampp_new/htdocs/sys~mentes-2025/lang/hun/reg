@@ -1,0 +1,127 @@
+<div class="error" style="height:40px; color:#900; font-weight:bold">
+{$ERROR}
+{$CAPTCHA_ERROR}
+</div>
+<form style="width:620px" method="get" action="sys/registration.php">
+  <strong>Belépési adatok:</strong><!----------------------------------------->
+  <hr/>
+  <div style="height:48px; width:180px;">
+    <label>
+      Ügyintéző bejelentkezési neve:<br />
+      <input onfocus="show_hide('user_help')" onblur="show_hide('user_help')" type="text" id="username" name="username" value="{$REG_USERNAME}"/>
+    </label>
+  </div>
+  <div id="user_help" class="help_text">A felhasználónév betűvel kell kezdődjön.</div>
+  
+  <div style="height:48px; width:180px; float:left;">
+    <label>
+      Jelszó:<br />
+      <input onfocus="show_hide('pass_help')" onblur="show_hide('pass_help')" type="password" id="password" name="password" value="{$REG_PASSWORD}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px;">
+    <label>
+      Jelszó újra:<br />
+      <input type="password" id="password_re" name="password_re" value="{$REG_PASSWORD_RE}"/>
+    </label>
+  </div>  
+  <div id="pass_help" class="help_text">A jelszó minimálisan 6 karakter hosszú kell legyen.</div>
+  <br />
+<strong>Személyes adatok:</strong><!---------------------------------------->
+  <hr/>
+  <div style="height:48px; width:180px;">
+    <label>
+      Teljes név:<br />
+      <input type="text" id="realname" name="realname" value="{$REG_REALNAME}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px;">
+    <label>
+      Email:<br />
+      <input type="text" id="email" name="email" value="{$REG_EMAIL}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px; float:left;">
+    <label>
+      Telefon:<br />
+      <input onfocus="show_hide('phone_help')" onblur="show_hide('phone_help')"  type="text" id="phone" name="phone" value="{$REG_PHONE}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px;">
+    <label>
+      Fax:<br />
+      <input type="text" id="fax" name="fax" value="{$REG_FAX}"/>
+    </label>
+  </div>
+  <div id="phone_help" class="help_text">A telefonszám "+országkód telefonszám" (pl.: +36 80234567) formátumban kell legyen.</div>
+  <br />
+  <strong>Céges adatok:</strong><!-------------------------------------------->
+  <hr/>
+  <div style="display:block;color:#000;background:#accfc9;" class="help_text">A céges adatok felülvizsgálatra kerülnek ügyintézőink által.</div>
+  <div style="height:48px; width:180px;">
+    <label>
+      Cég neve:<br />
+      <input type="text" id="company_name" name="company_name" value="{$REG_COMPANY_NAME}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:60px; float:left;">
+    <label>
+      Ir.szám:<br />
+      <input style="width:40px" type="text" id="company_zip" name="company_zip" value="{$REG_COMPANY_ZIP}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px;">
+    <label>
+      Cím:<br />
+      <input style="width:200px" type="text" id="company_address" name="company_address" value="{$REG_COMPANY_ADDRESS}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px; float:left;">
+    <label>
+      Telefonszáma:<br />
+      <input type="text" id="company_phone" name="company_phone" value="{$REG_COMPANY_PHONE}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px;">
+    <label>
+      Cége fax-száma:<br />
+      <input type="text" id="company_fax" name="company_fax" value="{$REG_COMPANY_FAX}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px;">
+    <label>
+      Cége email-címe:<br />
+      <input type="text" id="company_email" name="company_email" value="{$REG_COMPANY_EMAIL}"/>
+    </label>
+  </div>
+<br/>
+
+<script type="text/javascript">
+ var RecaptchaOptions = {
+    theme : 'clean'
+ };
+ </script>
+
+<div style="height:148px; width:400px;">
+    <label>
+      Írja be a képen látható szöveget:<br />
+      {$RECAPTCHA}
+    </label>
+<br style="clear:both;"/>
+  </div>
+
+
+  
+  <hr />
+  <br />
+  <input type="submit" value="{$REG}" />
+</form>

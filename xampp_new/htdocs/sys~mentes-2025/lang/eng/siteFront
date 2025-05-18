@@ -1,0 +1,108 @@
+<table style="border-collapse: collapse; border-spacing: 0px;">
+	<tr>
+		<td rowspan="3" style="vertical-align: top;width: 330px;">
+			<div>
+				<a href="/?lang=eng&page=aktualis&__ispart=0"><img src="/pic/fooldal-left-01-en.png" alt="targonca" style="width:290px;height:140px;margin-bottom: 10px" border="0" /></a><br/>
+				<a href="/?lang=eng&page=aktualis&__ispart=2"><img src="/pic/fooldal-left-02-en.png" alt="alkatresz" style="width:290px;height:140px;margin-bottom: 10px" border="0" /></a><br/>
+				<a href="/?lang=eng&page=aktualis&__ispart=5"><img src="/pic/fooldal-left-03-en.png" alt="szerviz" style="width:290px;height:140px;margin-bottom: 10px" border="0" /></a><br/>
+				<a href="/?lang=eng&page=aktualis&__ispart=3"><img src="/pic/fooldal-left-04-en.png" alt="szerviz" style="width:290px;height:140px;margin-bottom: 10px" border="0" /></a><br/>
+			</div>
+		</td>
+		<td style="vertical-align: top;" colspan="2">
+			<table style="width: 100%;">
+				<tr style="border: 1px solid #ffcc01;">
+					<td style="vertical-align: top;">
+						<a href="/?lang=eng&page=aktualis&__ispart=4" style="vertical-align:top;display:inline-block;"><img src="/pic/kozep-01-en.png" alt="Gépet keres?" width="175" height="85" border="0" /></a>
+						<a href="/?lang=eng&page=aktualis&__ispart=1" style="vertical-align:top;display:inline-block; margin-left: 10px;"><img src="/pic/kozep-02-en.png" alt="szerviz" width="185" height="85" border="0" /></a>
+						<a href="/?lang=eng&page=aktualis&__ispart=6" style="vertical-align:top;display:inline-block; margin-left: 10px;"><img src="/pic/kozep-03-en.png" alt="Fődarabot keres?" width="175" height="85" border="0" /></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top;height: 348px;">
+			<table style="width: 280px;height: 348px;">
+				<tr style="border: 1px solid #ffcc01;">
+					<td style="border: 1px solid #ffcc01;width: 280px; vertical-align: top;"><!-- weekly special -->
+						<div style="background: #ff0; width: 268px; height: 32px; font-weight: bold; font-size: 22px; text-align: center; margin-bottom: 2px; padding-left: 4px; padding-right: 4px;">20% OFF</div>
+						<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$ws_id}"><img src="{$daily_offer_image}" style="border-style: none; width:{$daily_offer_image_width}px; height:{$daily_offer_image_height}px" /></a>
+						<div style="width: 150px; float: left; padding-left: 4px; padding-top: 4px; font-weight: bold;">
+							{$daily_offer_make} {$daily_offer_model},<br />
+							{$daily_offer_type},<br />
+							{$daily_offer_status},<br />
+							{$daily_offer_fuel}, {$daily_offer_max-load} kg, {$daily_offer_max-height} mm
+						</div>
+						<div style="text-align:right; width: 108px; font-weight: bold; font-size: 12px; float: left; padding-right: 4px;">
+							{$daily_offer_saxon-id}<br />
+							<span style="color: red; text-decoration: line-through;">{$daily_offer_price} &euro; + VAT</span><br />
+							{$daily_offer_price_2} &euro; + VAT
+						</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td style="vertical-align: top;">
+			<table style="width: 260px;">
+				<tr>
+					<td style="border: 1px solid #ffcc01; width: 260px; height: 150px; vertical-align: top;">
+						<div style="background: #ff0; width: 268px; height: 32px; font-weight: bold; font-size: 22px; text-align: center; margin-bottom: 2px; padding-left: 4px; padding-right: 4px;">SPECIAL OFFER</div>
+						<div style="width: 138px; float:left;">
+							<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$so1_id}"><img src="{$so1_img}" style="border-style: none; width:{$so1_w}px; height:{$so1_h}px" /></a>
+							{$so1_saxon-id}<br />
+							{$so1_name}<br />
+							{$so1_price} + VAT
+						</div>
+						<div style="width: 134px; float:left">
+							<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$so2_id}"><img src="{$so2_img}" style="border-style: none; width:{$so2_w}px; height:{$so2_h}px" /></a>
+							{$so2_saxon-id}<br />
+							{$so2_name}<br />
+							{$so2_price} + VAT
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: 1px solid #ffcc01; width: 260px; height: 150px; vertical-align: top;">
+						<div style="width: 138px; float:left;">
+							<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$so3_id}"><img src="{$so3_img}" style="border-style: none; width:{$so3_w}px; height:{$so3_h}px" /></a>
+							{$so3_saxon-id}<br />
+							{$so3_name}<br />
+							{$so3_price} + VAT
+						</div>
+						<div style="width: 134px; float:left">
+							<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$so4_id}"><img src="{$so4_img}" style="border-style: none; width:{$so4_w}px; height:{$so4_h}px" /></a>
+							{$so4_saxon-id}<br />
+							{$so4_name}<br />
+							{$so4_price} + VAT
+						</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top;" colspan="2">
+			<table>
+				<tr>
+					<td style="border: 1px solid #ffcc01; width: 156px; vertical-align: top;">
+						<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp0_id}" target="_blank"><img src="{$rp0_img}" style="border-style: none; width:{$rp0_w}px; height:{$rp0_h}px" /></a>
+						<br>
+						<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp0_id}" target="_blank">details</a>
+					</td>
+					<td style="width:43px;">&nbsp;</td>
+					<td style="border: 1px solid #ffcc01; width: 156px; vertical-align: top;">
+						<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp1_id}" target="_blank"><img src="{$rp1_img}" style="border-style: none; width:{$rp1_w}px; height:{$rp1_h}px" /></a>
+						<br>
+						<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp1_id}" target="_blank">details</a>
+					</td>
+					<td style="width:43px;">&nbsp;</td>
+					<td style="border: 1px solid #ffcc01; width: 156px; vertical-align: top;">
+						<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp2_id}" target="_blank"><img src="{$rp2_img}" style="border-style: none; width:{$rp2_w}px; height:{$rp2_h}px" /></a>
+						<br>
+						<a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp2_id}" target="_blank">details</a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>

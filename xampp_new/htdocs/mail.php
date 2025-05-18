@@ -1,0 +1,1 @@
+<?php var_dump( mail("ajanlat@saxonrt.hu","subj","body","From: saxonrt@saxonrt.hu") ); ?>

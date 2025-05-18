@@ -1,0 +1,8 @@
+<input type="button" value="Új" onclick="hs.htmlExpand($('new_company'), {objectType: 'iframe', align: 'center', width: 500, height: 400}, {onClosed: function(){window.location.reload();}});"/>{$DATA}
+<br />
+<br />
+<hr />
+<a id="new_company" style="display:none" href="sys/admin_add_company.php" ></a>
+<br />
+<br />
+<a href="/?page=admin&lang=hun">Vissza</a>

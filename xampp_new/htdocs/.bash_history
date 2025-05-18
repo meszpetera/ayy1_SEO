@@ -1,0 +1,4 @@
+mc
+cd ..
+whoami
+mc

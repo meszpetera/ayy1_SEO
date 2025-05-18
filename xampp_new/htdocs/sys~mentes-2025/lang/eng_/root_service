@@ -1,0 +1,140 @@
+<h1 style="font-size: 24px;margin:0px;">Servicing</h1>
+<br/>
+<div class="error" style="height:40px; color:#900; font-weight:bold; font-size:14px;">
+{$CAPTCHA_ERROR}
+</div>
+<div style="width:861px">
+	<div style="margin-left:auto;margin-right:auto;width:5000px;">
+		<form action="/sys/root_service_sendmail.php?lang=eng" method="post">
+			<table>
+				<tr>
+					<td colspan="4">
+						<h3>Customer:</h3>
+					</td>
+				</tr>				
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Company:
+					</td>
+					<td colspan="5">
+						<input type="text" id="company" name="company" style="width:300px" value="{$company}"/> <br />
+					</td>
+				</tr>				
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Company address:
+					</td>
+					<td colspan="5">
+						<input type="text" id="company_addr" name="company_addr" style="width:300px" value="{$company_addr}"/> <br />
+					</td>
+				</tr>				
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Invoicing address:
+					</td>
+					<td colspan="5">
+						<input type="text" id="company_inv_addr" name="company_inv_addr" style="width:300px" value="{$company_inv_addr}"/> <br />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Your name:
+					</td>
+					<td colspan="5">
+						<input type="text" id="client" name="client" style="width:300px" value="{$client}"/> <br />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Your phone neumber:
+					</td>
+					<td colspan="5">
+						<input type="text" id="tel" name="tel" style="width:300px" value="{$tel}"/> <br />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Your e-mail address:
+					</td>
+					<td colspan="5">
+						<input type="text" id="email" name="email" style="width:300px" value="{$email}"/> <br />
+					</td>
+				</tr>
+                
+				<tr>
+					<td colspan="4">
+						<h3>Truck:</h3>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Type:
+					</td>
+					<td colspan="5">
+						<input type="text" id="truck" name="truck" style="width:300px" value="{$truck}"/> <br />
+					</td>
+				</tr>	
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Year:
+					</td>
+					<td colspan="5">
+						<input type="text" id="year" name="year" style="width:300px" value="{$year}"/> <br />
+					</td>
+				</tr>	
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Serial no.:
+					</td>
+					<td colspan="5">
+						<input type="text" id="id" name="id" style="width:300px" value="{$id}"/> <br />
+					</td>
+				</tr>	
+				<tr>
+					<td style="text-align:right; vertical-align:top; margin-right:8px;">
+						Please describe the issue:
+					</td>
+					<td colspan="5">
+						<textarea id="faults" name="faults" style="width:300px; height:120px">{$faults}</textarea> <br />
+					</td>
+				</tr>
+                
+                
+				<tr>
+					<td colspan="2">
+						<h3>Others:</h3>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right; vertical-align:top; margin-right:8px;">
+						Comments:
+					</td>
+					<td colspan="5">
+						<textarea id="comment" name="comment" style="width:300px; height:120px">{$comment}</textarea> <br />
+					</td>
+				</tr>
+                                <tr>
+					<td style="text-align:right;margin-right:8px;width:120px">
+						Type the words:
+					</td>
+					<td colspan="5">
+                                            <script type="text/javascript">
+                                             var RecaptchaOptions = {
+                                                theme : 'clean'
+                                             };
+                                             </script>
+						{$RECAPTCHA}
+					</td>
+				</tr>
+                
+                
+                <tr>
+                    <td colspan="4" style="text-align: center">
+                    <br />
+                        <input type="submit" value="send" />
+                    </tr>
+                </td>
+			</table>
+		</form>
+	</div>
+</div>

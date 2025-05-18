@@ -1,0 +1,25 @@
+#truck_select
+{
+  width:100%;
+}
+
+.truck_info td
+{
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+.truck_info input
+{
+  width:200px;
+  border:1px solid #ffcc01;
+}
+
+.image_holder
+{
+  width:200px;
+  vertical-align:top;
+  margin:5px;
+  float:left;
+  display:inline;
+}

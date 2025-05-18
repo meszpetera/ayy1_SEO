@@ -1,0 +1,90 @@
+<script type="text/javascript">
+  function ReloadUserInfo()
+  {
+    var selObj = document.getElementById('user');
+    var i = 0;
+    for (i=0; i < selObj.options.length; i++)
+    {
+      if (selObj.options[i].selected)
+        break;
+    }
+    var id = selObj.options[i].value;
+    var url = "/sys/new_offer_ajax_get-user-details.php?uid=" + id;
+
+    new Ajax.Request(url, {
+      method: 'get',
+      onSuccess: function(transport)
+        {
+          var userInfo = document.getElementById("userInfo");
+
+          if (userInfo)
+            userInfo.innerHTML = transport.responseText;
+        },
+      onFailed :function()
+        {
+          alert("A mûvelet nem sikerült. Kérem, próbálja újból.");
+        }
+      });
+  }
+
+
+  function CreateOffer()
+  {
+    var selObj = document.getElementById('user');
+    var i = 0;
+    for (i=0; i < selObj.options.length; i++)
+    {
+      if (selObj.options[i].selected)
+        break;
+    }
+    var uid = selObj.options[i].value;
+    var url = "/sys/new_offer_ajax_save-and-take.php?uid=" + uid;
+
+    new Ajax.Request(url, {
+      method: 'get',
+      onSuccess: function(transport)
+        {
+          //alert('URL' + url +'\nVálasz: '+transport.responseText);
+          parent.document.location = "/?page=offer_requests_edit&tmp=10&lang=hun&request=" + transport.responseText;
+        },
+      onFailed :function()
+        {
+          alert("A mûvelet nem sikerült. Kérem, próbálja újból.");
+        }
+      });
+
+
+  }
+
+
+  function CopyOffer(sourceOfferID)
+  {
+    var selObj = document.getElementById('user');
+    var i = 0;
+    for (i=0; i < selObj.options.length; i++)
+    {
+      if (selObj.options[i].selected)
+        break;
+    }
+    var uid = selObj.options[i].value;
+    var url = "/sys/offerrequest_createderivative.php?uid=" + uid + "&offerid=" + sourceOfferID;
+
+    new Ajax.Request(url, {
+      method: 'get',
+      onSuccess: function(transport)
+        {
+          parent.document.location = "/?page=offer_requests_edit&lang=hun&request=" + transport.responseText;
+        },
+      onFailed :function()
+        {
+          alert("A mûvelet nem sikerült. Kérem, próbálja újból.");
+        }
+      });
+
+
+  }
+</script>
+
+<div style="height:560px; overflow:auto;">
+{$CONTENT}
+</div>

@@ -1,0 +1,26 @@
+<div style="text-align:center;width:100%;">
+{$error}
+<form action="sys/login.php" method="post">
+<div style="width:362px;margin-left:auto;margin-right:auto;text-align:center;">
+  <div style="width:362px;clear:both;">
+    <div style="float:left;width:150px;height:40px;padding:3px;text-align:left;">
+      {$NAME}: 
+    </div>
+    <div style="float:left;width:200px;height:40px;padding:3px;text-align:left;">
+      <input type="text" name="user_login" class="iLoginInput" /><br />
+    </div>
+  </div>
+  <div style="width:362px;clear:both;">
+    <div style="float:left;width:150px;height:40px;padding:3px;text-align:left;">
+      {$PASS}: 
+    </div>
+    <div style="float:left;width:200px;height:40px;padding:3px;text-align:left;">
+      <input type="password" name="user_pass" class="iLoginInput" /><br />
+    </div>
+  </div>
+  <input type="hidden" name="loginredir" value="{$login_redir}" />
+  <br />
+  <input type="submit" value="{$LOGIN}"/> 
+</div>
+</form>
+</div>

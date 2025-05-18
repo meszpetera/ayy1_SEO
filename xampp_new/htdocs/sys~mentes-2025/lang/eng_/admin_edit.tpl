@@ -1,0 +1,1 @@
+<p style="font-size: 32px; padding: 0 0 0 0; margin: 0 0 0 0">SZERKESZTÉS</p><p style="color:#f00;">{$ERROR}</p><br /><br /><a href="?page=admin_edit&adminid=0">Új hozzáadása</a><br />{$LIST}<br/><a href="?page=admin">vissza</a><br /><br />

@@ -1,0 +1,27 @@
+<script type="text/javascript">
+    function addRow()
+    {
+        var id = document.getElementById('count').innerHTML;
+
+        document.getElementById('table1').innerHTML += 				
+        '<tr><td><input style="width:200px;" name="typehunX' + id + '" value="" width="60" /></td>' + 
+        '<td><input style="width:200px;" name="typeengX' + id + '" value="" width="28" /></td>' +
+        '<td><input style="width:200px;" name="typegerX' + id + '" value="" width="30" /></td></tr>';
+                    
+        document.getElementById('count').innerHTML = (parseInt(id)+1).toString();
+    }
+</script>
+
+<p style="font-size: 32px; padding: 0 0 0 0; margin: 0 0 0 0">FAJTÁK SZERKESZTÉSE</p>
+<br />
+
+
+<form action="sys/edit_type.php?ispart={$ISPART}" accept-charset="UTF-8" method="post">
+  <table id="table1">
+{$LIST}
+  </table><br />
+  <div style="visibility:hidden" id="count">0</div>
+  <a href="#" onClick="addRow()">új fajta</a><br />
+  <br />
+  <input type="submit" value="Mentés" />
+</form>

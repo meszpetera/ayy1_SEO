@@ -1,0 +1,72 @@
+<div id="dShowBox"> 
+  <div style="width:130px;margin:5px;font-size:10px;">
+    <p style="font-weight:bold;">{$finished}</p>
+    <p>{$zoom}</p>
+  </div>
+  <div style="width:140px;height:90px;position:absolute;right:10px;top:3px;font-size:10px;vertical-align:middle;">
+    <a href="{$imagelink}" class="highslide" onclick="return hs.expand(this);" id="promo_link">
+      <img alt="" src="{$defaultpic}" style="width:140px;height:90px;" id="promo_image" />
+    </a>
+    <input type="hidden" value="{$defaultid}" id="promo_id" /> 
+  </div>
+</div>
+
+<p style="font-size: 32px; padding: 0 0 0 0; margin: 0 0 0 0">RÓLUNK</p>
+<script type="text/javascript">setTimeout("change_to_next()", speed);</script>
+<div style="margin-top:30px;">
+<h1>TISZTELT ÜZEMELTETŐ!</h1>
+
+<p>Engedje meg, hogy néhány mondatban bemutatkozzunk. Cégünk a SAXON Ipari 
+Kereskedelmi és Szolgáltató Részvénytársaság magyar tulajdonú családi vállalkozás immár tizenhét 
+éves múltra tekint vissza.<br />
+<br />
+Az 1990-ben 3 fővel, nulláról induló magánvállalkozás kemény munkával és ügyfélközpontú 
+gondolkodással 1992-ben már 6 fővel dolgozó, saját telephellyel és 3 szervizautóval 
+rendelkező Kft. A folyamatos és átgondolt fejlesztések, valamint a szakmában akkor még 
+szokatlan gyorsaság és rugalmasság miatt az új cég gyors, és stabil fejlődésnek indult: új 
+telephelyet építettünk, többszörösére növeltük a dolgozói létszámot, a szervizautóparkot, valamint 
+az árukészletet, partnereink száma is folyamatosan növekedett.<br />
+<br />
+Az 1998-ban a részvénytársasággá átalakult cég a nemzetközi piacra kilépve újabb profillal 
+bővítette tevékenységét, megkezdtük nyugati és japán targoncaalkatrészek forgalmazását 
+valamint új és felújított targoncák és raklapemelők értékesítését, bérbeadását. 2005-től 
+a piac igényeihez igazodva ollós és teleszkópos ő valamint speciális targoncák 
+értékesítésével, javításával és bérletével is foglalkozunk.<br />
+<br />
+Partnereink igényeihez igazodva megkezdtük területi képviseleteink kiépítését, az ország területén 
+és a környező országokban is.  Ezek működtetéséhez, valamint újak indításához partnereket 
+keresünk.<br /> 
+<br />
+<strong>Mobil területi képviseletre – amihez minden technikai feltételt biztosítunk – folyamatosan 
+várjuk önálló szakmai gyakorlattal rendelkező agilis munkatársak jelentkezését.</strong><br /> 
+<br />
+Jelenleg 5 telephellyel, 12 szervizautóval 500 saját targoncával és több mint 50 alkalmazottal az 
+ország egyik legnagyobb infrastruktúrával rendelkező független targoncás szolgáltatója vagyunk.
+</p>
+
+<p>
+Magyar és külföldi beszállító partnereink az elmúlt évek folyamán velünk együtt fejlődtek, és 
+dinamikusan növekednek, kapcsolatunk szinte mindegyikkel a kezdetek óta töretlen. Megrendelőink a 
+gazdaság szinte minden területén jelenlévő, különböző nagyságú dinamikusan fejlődő magán, állami és 
+multinacionális cégek.<br />
+
+A műszaki fejlődést folyamatosan nyomon követjük: úgy a szakkiállításokon való részvétellel vagy a 
+szerelők folyamatos után képzésével, mint a szerszámozottság, műszerezettség fejlesztésével. 
+Munkáink elvégzése és az alkatrészek beszerzése során a legmesszebbmenőkig figyelembe vesszük 
+partnereink igényeit.
+A minőség mindig fontos szerepet játszott cégünk életében, ezért tevékenységünket 1998 óta az ISO 
+9002 minőségbiztosítási rendszer előírásai szerint végezzük.
+Pénzügyi finanszírozó partnerünk kedvező lízing és bérleti konstrukciókkal áll vásárlóink 
+rendelkezésére. Amennyiben tájékoztatónk felkeltette érdeklődését, részletes felvilágosításért 
+forduljon bizalommal munkatársainkhoz, vagy látogasson el valamelyik telephelyünkre. Termékeinkről, 
+szolgáltatásainkról és árainkról teljeskörű információhoz juthat, naponta frissített 
+www.saxonrt.hu  honlapunkon.
+<strong>Reméljük, hogy rövidesen Önt is partnereink között köszönthetjük.</strong>
+</p>
+<strong>Ügyfélszolgálatunk mindennemű targoncával kapcsolatos kérdésben szívesen áll 
+rendelkezésére.
+</strong>
+<p style="margin-top:40px">
+<img src="img/rolunk_alul.jpg" alt="" width="860" height="305" border="0" />
+</p>
+</div>

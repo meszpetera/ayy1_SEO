@@ -1,0 +1,124 @@
+<div class="error" style="height:40px; color:#900; font-weight:bold">
+{$ERROR}
+</div>
+<form style="width:620px" method="get" action="sys/registration.php">
+  <strong>Login details:</strong><!----------------------------------------->
+  <hr/>
+  <div style="height:48px; width:180px;">
+    <label>
+      Username:<br />
+      <input onfocus="show_hide('user_help')" onblur="show_hide('user_help')" type="text" id="username" name="username"/>
+    </label>
+  </div>
+  <div id="user_help" class="help_text">The username must start with a letter.</div>
+  
+  <div style="height:48px; width:180px; float:left;">
+    <label>
+      Password:<br />
+      <input onfocus="show_hide('pass_help')" onblur="show_hide('pass_help')" type="password" id="password" name="password"/>
+    </label>
+  </div>
+  
+  <div style="height:48px;">
+    <label>
+      Password again:<br />
+      <input type="password" id="password_re" name="password_re"/>
+    </label>
+  </div>  
+  <div id="pass_help" class="help_text">The minimum password length is 6 character.</div>
+  <br />
+<strong>Personal information:</strong><!---------------------------------------->
+  <hr/>
+  <div style="height:48px; width:180px;">
+    <label>
+      Name:<br />
+      <input type="text" id="realname" name="realname"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px;">
+    <label>
+      Email:<br />
+      <input type="text" id="email" name="email"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px; float:left;">
+    <label>
+      Phone:<br />
+      <input onfocus="show_hide('phone_help')" onblur="show_hide('phone_help')"  type="text" id="phone" name="phone"/>
+    </label>
+  </div>
+  
+  <div style="height:48px;">
+    <label>
+      Fax:<br />
+      <input type="text" id="fax" name="fax"/>
+    </label>
+  </div>
+  <div id="phone_help" class="help_text">Phone number should be in the following format: +country-code number (e.g. +36 1234567).</div>
+  <br />
+  <strong>Company details:</strong><!-------------------------------------------->
+  <hr/>
+  <div style="display:block;color:#000;background:#accfc9;" class="help_text">Company details will be reviewed by our staff.</div>
+  <div style="height:48px; width:180px;">
+    <label>
+      Company name:<br />
+      <input type="text" id="company_name" name="company_name"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:60px; float:left;">
+    <label>
+      ZIP code:<br />
+      <input style="width:40px" type="text" id="company_zip" name="company_zip"/>
+    </label>
+  </div>
+  
+  <div style="height:48px;">
+    <label>
+      Address:<br />
+      <input style="width:200px" type="text" id="company_address" name="company_address"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px; float:left;">
+    <label>
+      Phone:<br />
+      <input type="text" id="company_phone" name="company_phone"/>
+    </label>
+  </div>
+  
+  <div style="height:48px;">
+    <label>
+      Fax:<br />
+      <input type="text" id="company_fax" name="company_fax"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px;">
+    <label>
+      Email:<br />
+      <input type="text" id="company_email" name="company_email"/>
+    </label>
+  </div>
+
+<script type="text/javascript">
+ var RecaptchaOptions = {
+    theme : 'clean'
+ };
+ </script>
+
+<div style="height:148px; width:400px;">
+    <label>
+      Type thw words:<br />
+      {$RECAPTCHA}
+    </label>
+<br style="clear:both;"/>
+  </div>
+
+  <br />
+  <hr />
+  <br />
+  <input type="submit" value="{$REG}" />
+</form>

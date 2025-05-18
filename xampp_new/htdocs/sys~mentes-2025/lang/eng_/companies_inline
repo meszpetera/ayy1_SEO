@@ -1,0 +1,28 @@
+<script type="text/javascript">
+	
+	function doCompanySearch()
+	{
+		var filter = document.getElementById("companySearch").value;
+		//alert(filter);
+		
+		
+		var url = "sys/companySearch.php?searchString=" + filter;
+		new Ajax.Request(url, {
+			method: 'get',
+			onSuccess: function(transport) 
+			{
+				document.getElementById('companies_inline_container').innerHTML = transport.responseText;
+			}
+		});
+	}
+	
+</script>
+
+<input type="text" name="companySearch" id="companySearch" />
+<input type="button" value="Keresés" onClick="doCompanySearch()" />
+
+<input type="button" value="Új cég felvitele" style="margin-left: 24px" onclick="hs.htmlExpand($('new_company'), {objectType: 'iframe', align: 'center', width: 500, height: 480}, {onClosed: function(){window.location.reload();}});"/>
+<div id="companies_inline_container">
+{$DATA}
+</div>
+<a id="new_company" style="display:none" href="sys/admin_add_company.php" ></a>

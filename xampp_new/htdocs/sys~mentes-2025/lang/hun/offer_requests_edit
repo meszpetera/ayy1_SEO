@@ -1,0 +1,156 @@
+<p>
+    <a href="/?page=offer_requests&lang=hun">Vissza</a>
+    <table style="font-weight:bold;border-spacing:10px;">
+        <tr>
+            <td style="text-align:center;">
+                {$ADD}<br />
+                Meglévõ targoncák hozzáadása
+            </td>
+            <td style="text-align:center;">
+                {$ADDTRUCK}<br />
+                Új targonca felvitele
+            </td>
+            <td style="text-align:center;">
+                {$OPTIONS}<br />
+                Beállítások
+            </td>
+            <td style="text-align:center;">
+                {$VIEW}<br />
+                Megtekintés
+            </td>
+            <!--td style="text-align:center;">
+                {$CLOSE}
+            </td-->
+            <td style="text-align:center;">
+                {$MAIL}<br />
+                Küldés emailben
+            </td>
+        </tr>
+    </table>
+</p>
+<label> Kísérőszöveg az ajánlathoz:   </label>    
+    <select name="insert_text" id="insert_text" ONCHANGE="HandleChange('insert_text', 'offer_comment');">
+        <option />Válasszon</option>
+        {$OP}
+    </select>&nbsp; {$EDIT}&nbsp; {$INSERT}&nbsp; {$DELETE}
+    
+<br />
+    <textarea style="width:100%;height:70px;" id="offer_comment">{$OFFER_COMMENT}</textarea>
+
+<div style="padding:4px;margin-top:10px;margin-bottom:10px;border:1px solid #000;">
+  <span style="font-weight:bold;font-size:12px;">Az ajánlatot kérő megjegyzései:</span><br />
+  {$COMMENTS}
+</div>
+<table style="width:740px;margin-left:auto;margin-right:auto;">
+    <tr>
+      <td style="text-align:center;">
+        {$DATA}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div id="offer_data">
+
+        </div>
+      </td>
+    </tr>
+</table>
+<input type="hidden" value="{$ACTUAL}" id="actual_request" />
+
+
+<script type="text/javascript">
+ load_truck_info();
+//ekkor az iframe frissül, különben nagy szívás
+hs.preserveContent = false;
+
+function HandleChange(insert, comment) {
+      var select = document.getElementById(insert);
+      
+
+        var options = select.options;
+        
+        var id      = options[options.selectedIndex].id;
+        /*var value   = options[options.selectedIndex].value;*/
+        //alert(id);
+
+      if(select.value!="Válasszon"){
+        //IE support
+        if (document.selection) {
+            document.getElementById(comment).focus();
+            sel = document.selection.createRange();
+            sel.text = select.value;
+        }
+        //MOZILLA and others
+        else if (document.getElementById(comment).selectionStart || document.getElementById(comment).selectionStart == '0') {
+            var startPos = document.getElementById(comment).selectionStart;
+            var endPos = document.getElementById(comment).selectionEnd;
+            document.getElementById(comment).value = document.getElementById(comment).value.substring(0, startPos)
+                + select.value
+                + document.getElementById(comment).value.substring(endPos, document.getElementById(comment).value.length);
+        } else {
+            document.getElementById(comment).value += select.value;
+        }
+        var u= document.getElementById("newtext");
+        url=u.href;
+        url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+        //u.href=url + "&param="+select.value;
+        u.href=url + "&param="+id;
+
+        var u1= document.getElementById("edittext");
+        url=u1.href;
+        url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+
+        u1.href=url + "&param="+id;
+
+        var u2= document.getElementById("deletetext");
+        url=u2.href;
+        url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+
+        u2.href=url + "&param="+id;
+
+    }
+    else{
+    
+        var u= document.getElementById("newtext");
+        url=u.href;
+        url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+        u.href=url;
+
+        var u1= document.getElementById("edittext");
+        url=u1.href;
+        url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+        u1.href=url;
+
+        var u2= document.getElementById("deletetext");
+        url=u2.href;
+        url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+        u1.href=url;
+
+    }
+   
+}
+function getValue(url, sel){
+    
+    var x=0;
+    select=document.getElementById(sel);
+    x=select.options[select.selectedIndex].value;
+    url=(url.indexOf('&') > -1 ? url.substring(0,url.indexOf('&')) : url);
+    
+    return url + "&param="+x;
+ }
+
+function url_modosit(u) {
+   
+    url=document.getElementById(u);
+
+    var st="";
+    st=url.href+"&proba=1";
+
+    document.getElementById(u).href=st; 
+    //return false;
+
+    //return (url.indexOf('?') > -1 ? url.substring(0,url.indexOf('?')) : url) +
+     //      '?' + escape(document.insert_text.mySelect.options[document.insert_text.mySelect.selectedIndex].value);
+
+}
+</script>

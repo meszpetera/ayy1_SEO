@@ -1,0 +1,65 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+body
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+</style>
+<link href="../css/styles_usercp.css" rel="stylesheet" type="text/css" />
+</head>  
+<body>
+<form method="post" action="edit_user.php">
+<p style="font-size:18px;">Felhasználói adatok szerkesztése</p>
+<div style="font-weight:bold;text-align:center;color:#000;width:100%;">{$TEXT}</div>
+<p class="sub_title">{$PERSONAL}</p>
+<hr style="width:100%;height:3px;background-color:#000;color:#000;margin:0px;" />
+<div class="usercp_section">
+  <div class="">
+    Teljes név:<br />
+    <input type="text" class="usercp_input" value="{$FULLNAME}" name="realname"/><br />
+  </div>
+  <div class="">
+    Beosztás:<br />
+    <input type="text" class="usercp_input" value="{$ROLE}" name="role" /><br />
+  </div>
+  <div>
+    E-mail cím:<br />
+    <input type="text" class="usercp_input" value="{$EMAIL}" name="email" /><br />
+  </div>
+  <div>
+    Telefonszám:<br />
+    <input type="text" class="usercp_input" value="{$PHONE}" name="phone" /><br />
+  </div>  
+  <div>
+    Fax-szám:<br />
+    <input type="text" class="usercp_input" value="{$FAX}" name="fax" /><br />
+  </div>
+  <input type="hidden" value="{$USERID}" name="uid" />
+  <input type="hidden" value="f" name="set" />
+  <!--<hr style="width:300px;height:2px;background-color:#000;color:#000;margin:0px;margin-bottom:10px;" />
+  Régi jelszó:<br />
+  <input type="password" class="usercp_input" name="oldpass"/><br />
+  <div style="float:left;margin-right:40px;">
+    Új jelszó:<br />
+    <input type="password" class="usercp_input" name="pass" />
+  </div>
+  <div style="float:left;">
+    Új jelszó ismét:<br />
+    <input type="password" class="usercp_input" name="passre" /><br />
+  </div>-->
+  <hr style="clear:both;width:100%;height:3px;background-color:#000;color:#000;margin:0px;" />
+  <div style="clear:both;">
+    <input style="width:150px;" type="submit" value="Adatok frissítése" />
+  </div>
+</div>
+</form>
+<!--<a href="sys/logout.php" styl>{$LOGOUT}</a>-->
+</body>
+</html>

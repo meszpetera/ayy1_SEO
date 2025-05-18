@@ -1,0 +1,118 @@
+<script type="text/javascript" src="js/prototype.maskedinput.js"></script>
+<script type="text/javascript">
+    Event.observe(window, 'load', function() {
+        new MaskedInput('#saxonsearch', 'a-9999?');
+    });
+</script>
+
+
+<div style="width:400px; float:left;">
+    <a href="sys/trucks_create_excel_sheet.php?lang=eng" style="color:#fff;"><h1><img src="/img/excel.png" alt="" />Our current stock</h1></a>
+</div>
+<div style="text-align:right;">
+    <a href="#" onclick="change_search_mode();" style="margin:10px;"><h1>{$SEARCHMODE}</h1></a>
+</div>
+<br /><br />
+
+<div id="simplesearch" style="width: 100%; ">
+{$SIMPLESELLIST}
+</div>
+<div id="advancedsearch" style="width: 100%; height: 155px;display:none">
+  <div style="width:100%;height:20px;margin-bottom:5px;background:#ffcc01;">
+    <div style="width:49%;float:left;text-align:center;"><a href="#" onclick="ispart_changed(0);">{$TRUCK}</a></div>
+    <div style="width:49%;float:left;text-align:center;"><a href="#" onclick="ispart_changed(1);">{$PART}</a></div>
+    <div style="width:49%;float:left;text-align:center;"><a href="#" onclick="ispart_changed(2);">{$OTHERLE}</a></div>
+    <div style="width:49%;float:left;text-align:center;"><a href="#" onclick="ispart_changed(3);">{$ADAPTER}</a></div>
+  </div>
+  <div class="dBaseContainer">
+    <div class="dIconList">
+      <div class="dIcon" onclick="load_filter_list('saxon-id')" id="saxon-id" title="Saxon number"><div class="dIconLeft" id="saxon-id"></div><div class="dIconText">Saxon number</div><div class="dIconRight"></div></div>
+      <div class="dIcon" onclick="load_filter_list('make')" id="make" title="Manufacturer"><div class="dIconLeft"></div><div class="dIconText">Manufacturer</div><div class="dIconRight"></div></div>
+      <div class="dIcon" onclick="load_filter_list('type')" id="type" title="Type"><div class="dIconLeft"></div><div class="dIconText">Type</div><div class="dIconRight"></div></div>
+      <div class="dIcon" onclick="load_filter_list('fuel')" id="fuel" title="Fuel"><div class="dIconLeft"></div><div class="dIconText">Fuel</div><div class="dIconRight"></div></div>
+      <div class="dIcon" onclick="load_filter_list('max-load')" id="max-load" title="Max. load"><div class="dIconLeft"></div><div class="dIconText">Max. load</div><div class="dIconRight"></div></div>
+      <div class="dIcon" onclick="load_filter_list('status')" id="status" title="Status"><div class="dIconLeft"></div><div class="dIconText">Status</div><div class="dIconRight"></div></div>
+      <div class="dIcon" onclick="load_filter_list('location')" id="location" title="Location"><div class="dIconLeft"></div><div class="dIconText">Location</div><div class="dIconRight"></div></div>
+      <div class="dIcon" onclick="load_filter_list('cost')" id="cost" title="Price"><div class="dIconLeft"></div><div class="dIconText">Price</div><div class="dIconRight"></div></div>
+      <input type="hidden" value="{$ACTIVEFILTER}" id="1234rf" />
+    </div>
+    <div class="dSpacerEnd"></div>
+    <div class="dBase">
+      <div class="dFilterSelection">
+        <!--form name="form1" id="form1"-->
+        <div id="IEHack-FilterOptionsList">
+          <select size="8" id="selMake" class="selList" multiple="multiple" ondblclick="add_selected_filters();">
+            {$SELLIST}
+          </select>
+        </div>
+        <!--/form-->
+        <span style="position:absolute;left:7px;top:103px"><a href="#" onclick="invert_selection();">{$INVERTLINK}</a></span>
+        <span style="position:absolute;right:7px;top:103px"><a href="#" onclick="add_selected_filters();">{$ADDFILTERLINK}</a></span>
+      </div>
+      <!--div class="dDesc">
+        {$LISTHINT}
+      </div-->
+    </div>
+  </div>
+  <div style="float: left; width: 34px; position: relative;text-align:center;padding:0px;">
+  &nbsp;
+  </div>
+ <div class="dBaseContainer">
+    <div class="dIconList">
+      <div id="dLeftEndTitle"> </div>
+      <div id="dTitle">
+        {$FILTERTITLE}
+      </div>
+      <div id="dRightEndTitle"> </div>
+    </div>
+    <div class="dSpacerEnd"></div>
+    <div class="dBase">
+      <div class="dSelection" id="FilterList">
+
+      </div>
+      <div class="dFilterMenu" id="FilterMenu">
+        {$FILTERMENU}
+      </div>
+      <!--div class="dDesc">
+        {$FILTERHINT}
+      </div-->
+    </div>
+  </div>
+</div>
+<br /><div id="__HELP__" class="dHelp">
+  {$__HELP__}
+</div>
+<div id="pleaselogin" class="dHelp">
+  {$PLEASELOGIN}
+</div>
+<!--div class="dBasketSmall">
+</div-->
+<div class="dBasketContainer">
+  <div class="dBasket_top"><!-- --></div>
+  <div class="dBasket_middle">
+    <div class="dAktualisMenu" id="AktualisMenu">
+      {$BASKETLINKS}
+    </div>
+    <div class="{$BASKETCLASS}" id="BasketContainer">
+      <div class="dBasketSelection" id="Basket">
+        {$BASKET}
+      </div>
+      <div class="dBasketMenu" id="BasketMenu">
+        {$BASKETFOOTER}
+      </div>
+    </div>
+  </div>
+  <div class="dBasket_bottom"><!-- --></div>
+</div>
+
+
+<div id="nothingfound" style="text-align:center;width:100%;display:none;">{$NOTHINGFOUND}</div>
+<div id="filtered_list">
+{$LIST}
+</div>
+<input type="hidden" value="{$OFFER_REQUEST}" id="offer_request" />
+<input type="hidden" value="{$FLYER_PAGE}" id="flyer_page" />
+<script type="text/javascript">
+  var add_to_basket = "{$ADDTOBASKET}";
+  var in_basket = "{$INBASKET}";
+</script>

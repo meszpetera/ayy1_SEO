@@ -1,0 +1,174 @@
+<h1 style="font-size: 24px;margin:0px;">Bérleti ajánlat</h1>
+
+<br/>
+
+<div class="error" style="height:40px; color:#900; font-weight:bold; font-size:14px;">
+
+{$CAPTCHA_ERROR}
+
+</div>
+
+<div style="width:861px">
+
+	<div style="margin-left:auto;margin-right:auto;width:5000px;">
+
+		<form action="/sys/root_rental_sendmail.php" method="post">
+
+			<table>
+
+            
+
+            				<tr>
+
+					<td colspan="4">
+
+						<h3>Érdeklődő adatai:</h3>
+
+					</td>
+
+				</tr>				
+
+				<tr>
+
+					<td style="text-align:right;margin-right:8px;">
+
+						Cég neve:
+
+					</td>
+
+					<td colspan="5">
+
+						<input type="text" aria-label="Cég neve" id="company" name="company" style="width:300px" value="{$company}"/> <br />
+
+					</td>
+
+				</tr>
+
+				<tr>
+
+					<td style="text-align:right;margin-right:8px;">
+
+						Az Ön neve:
+
+					</td>
+
+					<td colspan="5">
+
+						<input type="text" aria-label="Az Ön neve" id="client" name="client" style="width:300px" value="{$client}"/> <br />
+
+					</td>
+
+				</tr>
+
+				<tr>
+
+					<td style="text-align:right;margin-right:8px;">
+
+						Telefonszáma:
+
+					</td>
+
+					<td colspan="5">
+
+						<input type="text" aria-label="Telefonszáma" id="tel" name="tel" style="width:300px" value="{$tel}"/> <br />
+
+					</td>
+
+				</tr>
+
+				<tr>
+
+					<td style="text-align:right;margin-right:8px;">
+
+						e-mail címe:
+
+					</td>
+
+					<td colspan="5">
+
+						<input type="text" aria-label="e-mail címe" id="email" name="email" style="width:300px" value="{$email}"/> <br />
+
+					</td>
+
+				</tr>
+
+
+
+            
+
+				<tr>
+
+					<td colspan="4">
+
+						<h3>Bérlet tárgya:</h3>
+
+					</td>
+
+				</tr>	
+
+                
+
+				<tr>
+
+					<td style="text-align:right;margin-right:8px;width:120px">
+
+						Az igényelt új vagy használt targonca paraméterei:
+
+					</td>
+
+					<td colspan="5">
+
+						<textarea id="desc" aria-label="Az igényelt új vagy használt targonca paraméterei" name="desc" style="width:300px; height:120px">{$desc}</textarea> <br />
+
+					</td>
+
+				</tr>
+
+                                <tr>
+
+					<td style="text-align:right;margin-right:8px;width:120px">
+
+						Írja be a képen látható szöveget:
+
+					</td>
+
+					<td colspan="5">
+
+                                            <script type="text/javascript">
+
+                                             var RecaptchaOptions = {
+
+                                                theme : 'clean'
+
+                                             };
+
+                                             </script>
+
+						{$RECAPTCHA}
+
+					</td>
+
+				</tr>
+
+			
+
+                <tr>
+
+                    <td colspan="4" style="text-align: center">
+
+                    <br />
+
+                        <input type="submit" value="küldés" />
+
+                    </tr>
+
+                </td>
+
+			</table>
+
+		</form>
+
+	</div>
+
+</div>
+

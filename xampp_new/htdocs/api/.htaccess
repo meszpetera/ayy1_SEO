@@ -1,0 +1,54 @@
+#  Készítő: H.Tibor
+
+DirectoryIndex index.html index.htm index.php index.phtml
+AddType application/json .json
+AddType text/html .ajax
+
+<FilesMatch "\.(jpg|png|jpeg|js|css|txt|xml|json)$">
+	Header add Access-Control-Allow-Origin "*"
+	Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+	Header add Access-Control-Allow-Methods "GET, POST"
+</FilesMatch>
+
+<Files ~ "\.(cgi|tpl|inc|ini|sql|pl|sh|tmp)$">
+	order allow,deny
+	deny from all
+</Files>
+
+<FilesMatch "\.(htm|html|css|js|php|phtml|json|ajax|ini|inc)$">
+	AddDefaultCharset UTF-8
+	DefaultLanguage hu-HU
+</FilesMatch>
+
+<ifModule mod_headers.c>
+	<FilesMatch "\.(php|json|ajax)$">
+		Header set Cache-Control "no-cache, no-store"
+		Header unset Last-Modified
+	</FilesMatch>
+	<FilesMatch "\.(html|htm|phtml|css|js|xml|txt)$">
+		Header set Cache-Control "max-age=604800, cache"
+	</FilesMatch>
+	<FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+		Header set Cache-Control "max-age=2419200, cache"
+	</FilesMatch>
+	<FilesMatch "\.(ico|pdf|flv|mp4|mp3)$">
+		Header set Cache-Control "max-age=29030400, cache"
+	</FilesMatch>
+</iFModule>
+
+<ifmodule mod_deflate.c>
+	AddOutputFilterByType DEFLATE image/png image/jpeg
+	AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css text/javascript
+	AddOutputFilterByType DEFLATE application/x-javascript application/javascript application/json
+	AddOutputFilterByType DEFLATE application/x-httpd-php
+</ifmodule>
+
+<iFModule mod_rewrite.c>
+	rewritebase /api/
+	RewriteEngine on
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php [QSA]
+
+</iFModule>
