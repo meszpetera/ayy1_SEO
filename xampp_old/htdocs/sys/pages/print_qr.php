@@ -1,0 +1,1 @@
+<?php  if(!loggedin() || !isauth())  {    redirect_in_site("?page=$default_page&lang=$lang");  }  else  {    $main_content = '<h1>Print Locations</h1>';    include("sys/tpl/main.tpl");  }?>

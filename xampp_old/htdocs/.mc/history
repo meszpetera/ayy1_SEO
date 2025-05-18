@@ -1,0 +1,14 @@
+
+[inpmc.fm.mkdir]
+0=aaa
+
+[Dir Hist New Right Panel]
+0=/home/www.saxonrt.eu
+
+[cmdline]
+0=
+
+[Dir Hist New Left Panel]
+0=/
+1=/home
+2=/home/www.saxonrt.eu

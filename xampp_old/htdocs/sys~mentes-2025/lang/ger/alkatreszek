@@ -1,0 +1,66 @@
+﻿<div id="dShowBox"> 
+  <div style="width:130px;margin:5px;font-size:10px;">
+    <p style="font-weight:bold;line-height:13px;text-align:left;">{$finished}</p>
+    <p style="text-align:left;line-height:13px;">{$zoom}</p>
+  </div>
+  <div style="width:140px;height:90px;position:absolute;right:10px;top:3px;font-size:10px;vertical-align:middle;">
+    <a href="{$imagelink}" class="highslide" onclick="return hs.expand(this);" id="promo_link">
+      <img alt="" src="{$defaultpic}" style="width:140px;height:90px;" id="promo_image" />
+    </a>
+    <input type="hidden" value="{$defaultid}" id="promo_id" /> 
+  </div>
+</div>
+
+<script type="text/javascript">setTimeout("change_to_next()", speed);</script>
+
+<p style="font-size: 32px; padding: 0 0 0 0; margin: 0 0 0 0">BESTANDTEILE</p><br />
+
+<table>
+  <tr>
+    <td style="width: 290px">
+      <img src="img/alkatkep1.jpg" alt="" width="268" height="162" style="margin-bottom:16px; margin-right:16px;" border="0"><br />
+      <img src="img/alkatkep2.jpg" alt="" width="268" height="162" style="margin-bottom:16px;" border="0"><br />
+      <img src="img/alkatkep3.jpg" alt="" width="268" height="162" style="margin-bottom:16px;" border="0"><br />
+      <img src="img/alkatkep4.jpg" alt="" width="268" height="162" style="margin-bottom:16px;" border="0"><br />
+      <img src="img/alkatkep5.jpg" alt="" width="268" height="162" style="margin-bottom:16px;" border="0"><br />
+    </td>
+    <td style="vertical-align:top;">
+      <h1>ERSATZTEILEWARENHAUSER</h1>
+      <p>
+        Unser Ersatzteilewarenhaus Vecsés bietet ein der größten und umfassendsten Ersatzteilesortimenten für Hubwagen zu günstigem Preis an. <br />
+        Wir haben etwa 30.000 Ersatzteile auf Lager, mit denen wir fast alle Ersatzteile – die am häufigsten defekt werden – für die im Land meist verbreiteten Typen bereitstellen können. <br />
+        Wir übernehmen die Lieferung auch von Ersatzteilen, die wir nicht auf Lager haben, mit Zollabfertigung, Transport mit Flugzeug oder Lkw, Liefertermin 2-14 Tage. <br />
+        Unsere ausländischen Partner (die größten Ersatzteilevertriebsunternehmen von Europa und der Vereinigten Staaten) unterstützen mit einer direkten Computerverbindung online die Identifizierung der gesuchten Ersatzteile von den ca. 5.000.000 bekannten Ersatzteilartikelnummern. <br />
+        Die Ersatzteilewarenhäuser unserer Vertretungen haben die Serviceteile für die Maschinen, die in der Region am meisten vorkommen, sowie Zusatzkomponente und Geräte zur Montage irgendeiner Maschine auf Lager. <br />
+        Im Falle größerer Mengen oder eines speziellen Auftrags werden die Kunden von der zentralen Ersatzteilebasis aus bedient. <br />
+        Unseren ständigen Kunden und den Wiederverkäufern bieten wir Preisermäßigungen oder Zahlungserleichterungen laut Vereinbarung an. Unser Versanddienst versendet die auf Lager gehabte Ware innerhalb von 2 Stunden nach dem Erhalt des Auftrags. <br />
+        Nach Bedarf liefern wir die bestellte Ware auf dem ganzen Gebiet des Landes ins Haus. Wir kaufen unverwendete neue und ausgebaute Ersatzteile für Hubwagen auf. Um unsere Tätigkeiten erweitern zu können, suchen wir Hersteller, Vertriebsunternehmen und für die regionalen Vertretungen Wiederverkäufer als Partner.<br />
+      </p>
+		  <h1>ÜBERHOLTE MASCHINENEINHEITEN</h1>
+      <p>
+      Werden teurere Komponente und Maschineneinheiten defekt, können die Teile nach Austauschen überholt werden, um Kosten zu ersparen.<br />
+      </p>
+		  <h1>ZUSATZEINRICHTUNGEN</h1>
+    	<p class=szoveg-4>
+        Montagehilfsmittel, Schmierstoffe und Fette. <br />
+        Aufgeblasene, Elastik- und Vollgummireifen. <br />
+        Spezielle Räder und Rollen aus Kunststoff. <br />
+        Spezielle Gabel und Gabelverlängerungen. <br />
+        Feste und mobile Fahrerhäuser, Planen. <br />
+        Adapter und Befestigungsvorrichtungen. <br />
+        Hydraulikschläuche und Armaturen. <br />
+        Hydraulikpumpen und Elemente. <br />
+        Gummiwaren und Dichtungssätze. <br />
+        Miniaturhubwagen (Makette). <br />
+        Kataloge und Maschinenbücher.<br />
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 100%" colspan="2">
+      <img src="img/alkatkep6.jpg" alt="" width="268" height="162" style="margin-right:16px;" border="0">
+      <img src="img/alkatkep7.jpg" alt="" width="268" height="162" style="margin-right:16px;" border="0">
+      <img src="img/alkatkep8.jpg" alt="" width="268" height="162" border="0">
+    </td>  
+  </tr>
+</table>

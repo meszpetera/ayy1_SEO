@@ -1,0 +1,1 @@
+<form action="sys/admin_select_daily_special.php">    <select name="truckid">        {$SAXONID_LIST}    </select>    <input type="submit" value="mentés"/></form>{$HISTORY}

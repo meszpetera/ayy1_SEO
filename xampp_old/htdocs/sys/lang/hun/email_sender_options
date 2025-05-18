@@ -1,0 +1,55 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+body
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+
+}
+
+</style>
+</head>  
+<body>
+<div style="font-weight:bold;">
+{$SUCCES}
+</div>
+<p style="font-size:18px;">{$PCIM}</p>
+<form method="post" action="offerrequest_createpdf.php" accept-charset="utf-8"> 
+  <div style="height:48px; width:250px;">
+
+    <div style="float: left; width: 350px;">
+      Saxon email:<br />
+      <input type="checkbox" name="saxon_chk" value="1" checked style="float: left; width: 20px;">
+      <input style="width:290px; float: left;" type="text" id="SName" name="SName" value="{$SNAME}" />
+    </div>
+  </div>
+  <div style="height:48px; width:250px;">
+
+    <div style="float: left; width: 350px;">
+      Megrendelő email:<br />
+      <input type="checkbox" name="megrendelo_chk" value="1" checked style="float: left; width: 20px;">
+      <input style="width:290px; float: left;" type="text" id="MName" name="MName" value="{$MNAME}" />
+    </div>
+  </div>
+  <div style="height:48px; width:250px;">
+
+    <div style="float: left; width: 350px;">
+      További címzettek (vesszővel elválasztva):<br />
+      <input type="checkbox" name="tovabbi_chk" value="1" style="float: left; width: 20px;">
+      <input style="width:290px; float: left;" type="text" id="TName" name="TName" value="{$TNAME}" />
+    </div>
+  </div>
+  <input type="hidden" value="{$ID}" id="offerid" name="offerid" />
+  <input type="hidden" value="1" id="sendEmail" name="sendEmail" />
+  
+    <input type="submit" value="Mehet" />
+
+</form>
+</body>
+</html>

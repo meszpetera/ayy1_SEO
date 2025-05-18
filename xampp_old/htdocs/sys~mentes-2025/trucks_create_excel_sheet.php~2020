@@ -1,0 +1,593 @@
+<?php
+ini_set("include_path", "./");
+/* DEBUG * /
+error_reporting(E_ALL & ~E_NOTICE ^ E_DEPRECATED & ~E_STRICT);
+ini_set('error_reporting', E_ALL & ~E_NOTICE ^ E_DEPRECATED & ~E_STRICT);
+ini_set("display_errors", 1);
+/* ***** */
+include("Spreadsheet/Excel/Writer.php");
+include("common.php");
+global $language, $sql;
+
+
+if (isset($_REQUEST['old'])) {
+
+		$price = isset($_REQUEST['showprice']) && $_REQUEST['showprice'] == '1' ? true : false;
+		$showcomment = isset($_REQUEST['showcomment']) && $_REQUEST['showcomment'] == '1' ? true : false;
+		$celltomerge = $price ? 8 : 7;
+
+		$workbook = new Spreadsheet_Excel_Writer();
+		$workbook->send('saxon_trucks_and_parts.xls');
+
+		$worksheet = & $workbook->addWorksheet('Saxon Zrt. TRUCKS');
+		$worksheet->setLandscape();
+		$worksheet->setPrintScale(96);
+		$worksheet->setMargins(0.4);
+		$worksheet->freezePanes(array(1, 0));
+		$worksheet->setColumn(0, 0, 7);
+		$worksheet->write(0, 0, $language['saxon-id']);
+		$worksheet->setColumn(0, 1, 19);
+		$worksheet->write(0, 1, $language['make']);
+		$worksheet->setColumn(0, 2, 24);
+		$worksheet->write(0, 2, $language['model']);
+		$worksheet->setColumn(0, 3, 24);
+		$worksheet->write(0, 3, $language['fuel']);
+		$worksheet->setColumn(0, 4, 7);
+		$worksheet->write(0, 4, $language['max-load']);
+		$worksheet->setColumn(0, 5, 13);
+		$worksheet->write(0, 5, $language['max-height']);
+		$worksheet->setColumn(0, 6, 19);
+		$worksheet->write(0, 6, $language['location']);
+		$worksheet->setColumn(0, 7, 21);
+		$worksheet->write(0, 7, $language['status']);
+
+		if ($price) {
+				$worksheet->setColumn(0, 8, 07);
+				$worksheet->write(0, 8, $language['cost']);
+		}
+
+		if ($showcomment) {
+				$worksheet->setColumn(0, 8 + ($price ? 1 : 0), 20);
+				$worksheet->write(0, 9, $language['comment']);
+		}
+
+		$mysql = get_connection();
+		$mysql->execute($sql['setutf']);
+
+		$format_header = & $workbook->addFormat();
+		$format_header->setFontFamily('Arial');
+		$format_header->setSize(12);
+		$format_header->setBold(1);
+		$workbook->setCustomColor(32, 210, 210, 210);
+		$format_header->setFgColor(32);
+
+		$format_ispart = & $workbook->addFormat();
+		$format_ispart->setFontFamily('Arial');
+		$format_ispart->setSize(14);
+		$format_ispart->setBold(1);
+		$workbook->setCustomColor(32, 210, 210, 210);
+		$format_ispart->setFgColor(32);
+
+		$stmt = $mysql->prepare($sql['excel_get-types']);
+		$stmt->bind_params('eng');
+
+		if ($stmt->execute()) {
+				$row = 2;
+				$result = $stmt->fetch_all();
+
+				for ($i = 0; $i < count($result); $i++) {
+						$worksheet->writeString($row, 0, utf8_decode($result[$i]['value']), $format_header);
+						$worksheet->mergeCells($row, 0, $row, $celltomerge);
+						$row++;
+
+						$stmt = $mysql->prepare($sql['excel_get-trucks']);
+						$stmt->bind_params('eng', $result[$i]['ID']);
+						if ($stmt->execute()) {
+								$trucks = $stmt->fetch_all();
+								foreach ($trucks as $truck) {
+										$worksheet->writeUrl($row, 0, 'http://saxonrt.eu/sys/aktualis_ajax_truck_details.php?lang=' . $_REQUEST['lang'] . '&id=' . $truck['truck_id'], $truck['truck_saxon-id']);
+										$worksheet->write($row, 1, $truck['truck_make']);
+										$worksheet->write($row, 2, $truck['truck_model']);
+										$worksheet->write($row, 3, $truck['truck_fuel']);
+										$worksheet->write($row, 4, $truck['truck_max-load']);
+										$worksheet->write($row, 5, $truck['truck_max-height']);
+										$worksheet->write($row, 6, utf8_decode($truck['truck_location']));
+										$worksheet->write($row, 7, $truck['truck_status']);
+										if ($price)
+												$worksheet->write($row, 8, $truck['truck_cost']);
+										if ($showcomment)
+												$worksheet->write($row, 8 + ($price ? 1 : 0), $truck['truck_short-comment']);
+										$row++;
+								}
+
+								$row++;
+								$row++;
+						}
+				}
+		}
+
+		$workbook->close();
+}
+elseif (isset($_REQUEST['kategoria'])) {
+
+		$publikus=$_REQUEST['publikus'];
+
+		if (isset($_REQUEST['lang']) and $_REQUEST['lang'] == "hun") {
+				$lang = "hun";
+		} else {
+				$lang = "eng";
+		}
+
+
+		$price = isset($_REQUEST['showprice']) && $_REQUEST['showprice'] == '1' ? true : false;
+		$showcomment = isset($_REQUEST['showcomment']) && $_REQUEST['showcomment'] == '1' ? true : false;
+		$celltomerge = $price ? 11 : 10;
+
+		$workbook = new Spreadsheet_Excel_Writer();
+		if ($_REQUEST['partsonly'] == 1)
+				$workbook->send('saxon_parts.xls');
+		else if ($_REQUEST['trucksonly'] == 1)
+				$workbook->send('saxon_trucks.xls');
+		else
+				$workbook->send('saxon_trucks_and_parts.xls');
+
+		//Az excel file akkor is elkészül, ha itt meg állítom die()-al.
+
+		if ($_REQUEST['kategoria'] == 'a' or $_REQUEST['kategoria'] == 'b' or $_REQUEST['kategoria'] == 'c') {
+				$item = 0;
+				$kategoria = $_REQUEST['kategoria'];
+
+				$worksheet = & $workbook->addWorksheet('Saxon Zrt. ALL IN ONE');
+				$worksheet->setLandscape();
+				$worksheet->setPrintScale(96);
+				$worksheet->setMargins(0.4);
+				$worksheet->freezePanes(array(1, 0));
+				$worksheet->setColumn(0, 0, 6);
+				$worksheet->write(0, 0, utf8_decode($language['saxon-id']));
+				$worksheet->setColumn(0, 1, 14);
+				$worksheet->write(0, 1, utf8_decode($language['make']));
+				$worksheet->setColumn(0, 2, 18);
+				$worksheet->write(0, 2, utf8_decode($language['model']));
+				$worksheet->setColumn(0, 3, 11);
+				$worksheet->write(0, 3, utf8_decode($language['fuel']));
+				$worksheet->setColumn(0, 4, 4);
+				$worksheet->write(0, 4, utf8_decode($language['year']));
+				$worksheet->setColumn(0, 5, 6);
+				$worksheet->write(0, 5, utf8_decode($language['max-load']));
+				$worksheet->setColumn(0, 6, 6);
+				$worksheet->write(0, 6, utf8_decode($language['hours-used']));
+				$worksheet->setColumn(0, 7, 11);
+				$worksheet->write(0, 7, utf8_decode($language['max-height']));
+				$worksheet->setColumn(0, 8, 12);
+				$worksheet->write(0, 8, utf8_decode($language['location']));
+				$worksheet->setColumn(0, 9, 13);
+				$worksheet->write(0, 9, utf8_decode($language['status']));
+
+				if ($price) {
+						$worksheet->setColumn(0, 10, 07);
+						$worksheet->write(0, 10, utf8_decode($language['cost']));
+				}
+
+				//if($showcomment) {
+				$worksheet->setColumn(0, 10 + ($price ? 1 : 0), 20);
+				$worksheet->write(0, 10 + ($price ? 1 : 0), utf8_decode($language['comment']));
+				//}
+
+
+				$worksheet->setColumn(0, 11 + ($price ? 1 : 0), 20);
+				$worksheet->write(0, 11 + ($price ? 1 : 0), utf8_decode('Category'));
+
+
+				$mysql = get_connection();
+				$mysql->execute($sql['setutf']);
+
+				$format_header = & $workbook->addFormat();
+				$format_header->setFontFamily('Arial');
+				$format_header->setSize(12);
+				$format_header->setBold(1);
+				$workbook->setCustomColor(32, 210, 210, 210);
+				$format_header->setFgColor(32);
+
+				$format_ispart = & $workbook->addFormat();
+				$format_ispart->setFontFamily('Arial');
+				$format_ispart->setSize(14);
+				$format_ispart->setBold(1);
+				$format_ispart->setAlign('center');
+				$workbook->setCustomColor(32, 210, 210, 210);
+				$format_ispart->setFgColor(32);
+				$format_ispart->setColor('red');
+
+				$format_body = & $workbook->addFormat();
+				$format_body->setFontFamily('Arial');
+				$format_body->setSize(8);
+
+				$format_body_url = & $workbook->addFormat();
+				$format_body_url->setFontFamily('Arial');
+				$format_body_url->setSize(8);
+				$workbook->setCustomColor(33, 0, 0, 192);
+				$format_body_url->setColor(33);
+
+				if ($kategoria == 'a') {
+						$stmt = $mysql->prepare($sql['excel_get-sum']);
+
+						//$stmt->bind_params($lang, '0');
+						$stmt->bind_params($lang);
+				}
+
+				if ($kategoria == 'b') {
+						$stmt = $mysql->prepare($sql['excel_get-sum-b']);
+
+						//$stmt->bind_params($lang, '0');
+						$stmt->bind_params($lang, 0, 2, 3, 5);
+				}
+
+				if ($kategoria == 'c') {
+						$stmt = $mysql->prepare($sql['excel_get-sum-c']);
+
+						//$stmt->bind_params($lang, '0');
+						$stmt->bind_params($lang, 1, 4, 6);
+				}
+
+				if ($stmt->execute()) {
+						$celltomerge = $price ? 12 : 11;
+						$row = 2;
+						$result = $stmt->fetch_all();
+						$lastIspart = '#';
+						for ($i = 0; $i < count($result); $i++) {
+								$CategList = false;
+								//publikus rész is hozzávéve
+								if ($publikus=='x'){
+										$stmt = $mysql->prepare($sql['excel_get-trucks_2']);
+										$stmt->bind_params($lang, $result[$i]['ID'], $result[$i]['ispart']);
+								}
+								else{
+										$stmt = $mysql->prepare($sql['excel_get-trucks_2pub']);
+										$stmt->bind_params($lang, $result[$i]['ID'], $result[$i]['ispart'], $publikus);
+								}
+								if ($stmt->execute()) {
+									$trucks = $stmt->fetch_all();
+									if(count($trucks)>0 AND isSet($trucks[0]['truck_id'])) { $CategList = true; } else { $CategList = false; }
+									if($CategList) {
+											if($lastIspart!=$result[$i]['ispart']) {
+												$worksheet->writeString($row, 0, utf8_decode($language['aktualis:ispart'][$result[$i]['ispart']]['value']), $format_ispart);
+												$worksheet->mergeCells($row, 0, $row, $celltomerge);
+												$lastIspart=$result[$i]['ispart'];
+												$row++;
+												$row++;
+											}
+											$worksheet->writeString($row, 0, utf8_decode($result[$i]['value']), $format_header);
+											$worksheet->mergeCells($row, 0, $row, $celltomerge);
+											$row++;
+										foreach ($trucks as $truck) {
+											$item++;
+												if ($truck['truck_saxon-id'] != '') {
+														$worksheet->writeUrl($row, 0, 'http://saxonrt.eu/sys/aktualis_ajax_truck_details.php?lang=' . $_REQUEST['lang'] . '&id=' . $truck['truck_id'], $truck['truck_saxon-id'], $format_body_url);
+												}
+												$worksheet->write($row, 1, utf8_decode($truck['truck_make']), $format_body);
+												$worksheet->write($row, 2, utf8_decode($truck['truck_model']), $format_body);
+												$worksheet->write($row, 3, utf8_decode($truck['truck_fuel']), $format_body);
+												$worksheet->write($row, 4, utf8_decode($truck['truck_year']), $format_body);
+												$worksheet->write($row, 5, utf8_decode($truck['truck_max-load']), $format_body);
+												$worksheet->write($row, 6, utf8_decode($truck['truck_hours-used']), $format_body);
+												$worksheet->write($row, 7, utf8_decode($truck['truck_max-height']), $format_body);
+												$worksheet->write($row, 8, utf8_decode($truck['truck_location']), $format_body);
+												$worksheet->write($row, 9, utf8_decode($truck['truck_status']), $format_body);
+												if ($price)
+														$worksheet->write($row, 10, $truck['truck_cost'], $format_body);
+												if ($showcomment)
+														$worksheet->write($row, 10 + ($price ? 1 : 0), utf8_decode($truck['truck_short-comment']), $format_body);
+												$worksheet->write($row, 11 + ($price ? 1 : 0), utf8_decode($language['aktualis:ispart'][$truck['truck_ispart']]['value']), $format_body);
+												$row++;
+										}
+										$row++;
+										$row++;
+									}
+								}
+						}
+				}
+		}
+		else {
+
+				$lang = $_REQUEST['lang'];
+				$kategoria = (int) $_REQUEST['kategoria'];
+
+				$worksheet = & $workbook->addWorksheet('Saxon Zrt. PARTS');
+
+				$worksheet->setLandscape();
+				$worksheet->setPrintScale(96);
+				$worksheet->setMargins(0.4);
+				$worksheet->freezePanes(array(1, 0));
+				$worksheet->setColumn(0, 0, 7);
+				$worksheet->write(0, 0, utf8_decode($language['saxon-id']));
+				$worksheet->setColumn(0, 1, 19);
+				$worksheet->write(0, 1, utf8_decode($language['make']));
+				$worksheet->setColumn(0, 2, 24);
+				$worksheet->write(0, 2, utf8_decode($language['model']));
+				$worksheet->setColumn(0, 3, 24);
+				$worksheet->write(0, 3, utf8_decode($language['fuel']));
+				$worksheet->setColumn(0, 4, 7);
+				$worksheet->write(0, 4, utf8_decode($language['max-load']));
+				$worksheet->setColumn(0, 5, 13);
+				$worksheet->write(0, 5, utf8_decode($language['max-height']));
+				$worksheet->setColumn(0, 6, 19);
+				$worksheet->write(0, 6, utf8_decode($language['location']));
+				$worksheet->setColumn(0, 7, 21);
+				$worksheet->write(0, 7, utf8_decode($language['status']));
+
+				if ($price) {
+						$worksheet->setColumn(0, 8, 07);
+						$worksheet->write(0, 8, utf8_decode($language['cost']));
+				}
+
+				if ($showcomment) {
+						$worksheet->setColumn(0, 8 + ($price ? 1 : 0), 20);
+						$worksheet->write(0, 9, utf8_decode($language['comment']));
+				}
+
+				$mysql = get_connection();
+				$mysql->execute($sql['setutf']);
+
+				$format_header = & $workbook->addFormat();
+				$format_header->setFontFamily('Arial');
+				$format_header->setSize(12);
+				$format_header->setBold(1);
+				$workbook->setCustomColor(32, 210, 210, 210);
+				$format_header->setFgColor(32);
+
+				$format_ispart = & $workbook->addFormat();
+				$format_ispart->setFontFamily('Arial');
+				$format_ispart->setSize(14);
+				$format_ispart->setBold(1);
+				$workbook->setCustomColor(32, 210, 210, 210);
+				$format_ispart->setFgColor(32);
+
+				$stmt = $mysql->prepare($sql['excel_get-types_2']);
+				$stmt->bind_params($lang, $kategoria);
+
+				if ($stmt->execute()) {
+						$row = 2;
+						$result = $stmt->fetch_all();
+
+						for ($i = 0; $i < count($result); $i++) {
+								$worksheet->writeString($row, 0, utf8_decode($result[$i]['value']), $format_header);
+								$worksheet->mergeCells($row, 0, $row, $celltomerge);
+								$row++;
+								
+								if ($publikus=='x'){
+										$stmt = $mysql->prepare($sql['excel_get-trucks_2']);
+										$stmt->bind_params($lang, $result[$i]['ID'], $kategoria);
+								}else{
+										$stmt = $mysql->prepare($sql['excel_get-trucks_2pub']);
+										$stmt->bind_params($lang, $result[$i]['ID'], $kategoria, $publikus);
+								}
+								if ($stmt->execute()) {
+										$trucks = $stmt->fetch_all();
+										foreach ($trucks as $truck) {
+												if ($truck['truck_saxon-id'] != '') {
+														$worksheet->writeUrl($row, 0, 'http://saxonrt.eu/sys/aktualis_ajax_truck_details.php?lang=' . $_REQUEST['lang'] . '&id=' . $truck['truck_id'], $truck['truck_saxon-id'], $format_body_url);
+												}
+												$worksheet->write($row, 1, utf8_decode($truck['truck_make']), $format_body);
+												$worksheet->write($row, 2, utf8_decode($truck['truck_model']), $format_body);
+												$worksheet->write($row, 3, utf8_decode($truck['truck_fuel']), $format_body);
+												$worksheet->write($row, 4, utf8_decode($truck['truck_max-load']), $format_body);
+												$worksheet->write($row, 5, utf8_decode($truck['truck_max-height']), $format_body);
+												$worksheet->write($row, 6, utf8_decode($truck['truck_location']), $format_body);
+												$worksheet->write($row, 7, utf8_decode($truck['truck_status']), $format_body);
+												if ($price) {
+														$worksheet->write($row, 8, $truck['truck_cost'], $format_body);
+												}
+												if ($showcomment) {
+														$worksheet->write($row, 8 + ($price ? 1 : 0), utf8_decode($truck['truck_short-comment']), $format_body);
+												}
+												$row++;
+										}
+
+										$row++;
+										$row++;
+								}
+						}
+				}
+		}
+
+		$workbook->close();
+} else {
+		$price = isset($_REQUEST['showprice']) && $_REQUEST['showprice'] == '1' ? true : false;
+		$showcomment = isset($_REQUEST['showcomment']) && $_REQUEST['showcomment'] == '1' ? true : false;
+		$celltomerge = $price ? 11 : 10;
+
+		$workbook = new Spreadsheet_Excel_Writer();
+		if ($_REQUEST['partsonly'] == 1)
+				$workbook->send('saxon_parts.xls');
+		else if ($_REQUEST['trucksonly'] == 1)
+				$workbook->send('saxon_trucks.xls');
+		else
+				$workbook->send('saxon_trucks_and_parts.xls');
+
+		//trucks
+		if ($_REQUEST['partsonly'] != 1) {
+				$worksheet = & $workbook->addWorksheet('Saxon Zrt. TRUCKS');
+				$worksheet->setLandscape();
+				$worksheet->setPrintScale(96);
+				$worksheet->setMargins(0.4);
+				$worksheet->freezePanes(array(1, 0));
+				$worksheet->setColumn(0, 0, 6);
+				$worksheet->write(0, 0, utf8_decode($language['saxon-id']));
+				$worksheet->setColumn(0, 1, 14);
+				$worksheet->write(0, 1, utf8_decode($language['make']));
+				$worksheet->setColumn(0, 2, 18);
+				$worksheet->write(0, 2, utf8_decode($language['model']));
+				$worksheet->setColumn(0, 3, 11);
+				$worksheet->write(0, 3, utf8_decode($language['fuel']));
+				$worksheet->setColumn(0, 4, 4);
+				$worksheet->write(0, 4, utf8_decode($language['year']));
+				$worksheet->setColumn(0, 5, 6);
+				$worksheet->write(0, 5, utf8_decode($language['max-load']));
+				$worksheet->setColumn(0, 6, 6);
+				$worksheet->write(0, 6, utf8_decode($language['hours-used']));
+				$worksheet->setColumn(0, 7, 11);
+				$worksheet->write(0, 7, utf8_decode($language['max-height']));
+				$worksheet->setColumn(0, 8, 12);
+				$worksheet->write(0, 8, utf8_decode($language['location']));
+				$worksheet->setColumn(0, 9, 13);
+				$worksheet->write(0, 9, utf8_decode($language['status']));
+
+				if ($price) {
+						$worksheet->setColumn(0, 10, 07);
+						$worksheet->write(0, 10, utf8_decode($language['cost']));
+				}
+
+				//if($showcomment) {
+				$worksheet->setColumn(0, 10 + ($price ? 1 : 0), 20);
+				$worksheet->write(0, 10 + ($price ? 1 : 0), utf8_decode($language['comment']));
+		}
+
+
+		$mysql = get_connection();
+		$mysql->execute($sql['setutf']);
+
+		$format_header = & $workbook->addFormat();
+		$format_header->setFontFamily('Arial');
+		$format_header->setSize(12);
+		$format_header->setBold(1);
+		$workbook->setCustomColor(32, 210, 210, 210);
+		$format_header->setFgColor(32);
+
+		$format_body = & $workbook->addFormat();
+		$format_body->setFontFamily('Arial');
+		$format_body->setSize(8);
+
+		$format_body_url = & $workbook->addFormat();
+		$format_body_url->setFontFamily('Arial');
+		$format_body_url->setSize(8);
+		$workbook->setCustomColor(33, 0, 0, 192);
+		$format_body_url->setColor(33);
+
+		$stmt = $mysql->prepare($sql['excel_get-types_2']);
+		$stmt->bind_params('eng', '0');
+
+		if ($stmt->execute()) {
+				$row = 2;
+				$result = $stmt->fetch_all();
+
+				for ($i = 0; $i < count($result); $i++) {
+						$worksheet->writeString($row, 0, utf8_decode($result[$i]['value']), $format_header);
+						$worksheet->mergeCells($row, 0, $row, $celltomerge);
+						$row++;
+
+						$stmt = $mysql->prepare($sql['excel_get-trucks_2']);
+						$stmt->bind_params('eng', $result[$i]['ID'], '0');
+						if ($stmt->execute()) {
+								$trucks = $stmt->fetch_all();
+								foreach ($trucks as $truck) {
+										if ($truck['truck_saxon-id'] != '') {
+												$worksheet->writeUrl($row, 0, 'http://saxonrt.eu/sys/aktualis_ajax_truck_details.php?lang=' . $_REQUEST['lang'] . '&id=' . $truck['truck_id'], $truck['truck_saxon-id'], $format_body_url);
+										}
+										$worksheet->write($row, 1, $truck['truck_make'], $format_body);
+										$worksheet->write($row, 2, $truck['truck_model'], $format_body);
+										$worksheet->write($row, 3, $truck['truck_fuel'], $format_body);
+										$worksheet->write($row, 4, $truck['truck_year'], $format_body);
+										$worksheet->write($row, 5, $truck['truck_max-load'], $format_body);
+										$worksheet->write($row, 6, $truck['truck_hours-used'], $format_body);
+										$worksheet->write($row, 7, $truck['truck_max-height'], $format_body);
+										$worksheet->write($row, 8, utf8_decode($truck['truck_location']), $format_body);
+										$worksheet->write($row, 9, $truck['truck_status'], $format_body);
+										if ($price)
+												$worksheet->write($row, 10, $truck['truck_cost'], $format_body);
+										if ($showcomment)
+												$worksheet->write($row, 10 + ($price ? 1 : 0), $truck['truck_short-comment'], $format_body);
+										$row++;
+								}
+
+								$row++;
+								$row++;
+						}
+				}
+		}
+		//}
+
+		if ($_REQUEST['trucksonly'] != 1) {
+				$worksheet = & $workbook->addWorksheet('Saxon Zrt. PARTS');
+				$worksheet->setLandscape();
+				$worksheet->setPrintScale(96);
+				$worksheet->setMargins(0.4);
+				$worksheet->freezePanes(array(1, 0));
+				$worksheet->setColumn(0, 0, 7);
+				$worksheet->write(0, 0, 'Saxon number');
+				$worksheet->setColumn(0, 1, 19);
+				$worksheet->write(0, 1, 'Make');
+				$worksheet->setColumn(0, 2, 24);
+				$worksheet->write(0, 2, 'Model');
+				$worksheet->setColumn(0, 3, 24);
+				$worksheet->write(0, 3, 'Fuel');
+				$worksheet->setColumn(0, 4, 7);
+				$worksheet->write(0, 4, 'Max. load');
+				$worksheet->setColumn(0, 5, 13);
+				$worksheet->write(0, 5, 'Max. height');
+				$worksheet->setColumn(0, 6, 19);
+				$worksheet->write(0, 6, 'Location');
+				$worksheet->setColumn(0, 7, 21);
+				$worksheet->write(0, 7, 'Status');
+
+				if ($price) {
+						$worksheet->setColumn(0, 8, 07);
+						$worksheet->write(0, 8, 'Price');
+				}
+
+				if ($showcomment) {
+						$worksheet->setColumn(0, 8 + ($price ? 1 : 0), 20);
+						$worksheet->write(0, 9, 'Comment');
+				}
+
+				$mysql = get_connection();
+				$mysql->execute($sql['setutf']);
+
+				$format_header = & $workbook->addFormat();
+				$format_header->setFontFamily('Arial');
+				$format_header->setSize(12);
+				$format_header->setBold(1);
+				$workbook->setCustomColor(32, 210, 210, 210);
+				$format_header->setFgColor(32);
+
+				$stmt = $mysql->prepare($sql['excel_get-types_2']);
+				$stmt->bind_params('eng', '1');
+
+				if ($stmt->execute()) {
+						$row = 2;
+						$result = $stmt->fetch_all();
+
+						for ($i = 0; $i < count($result); $i++) {
+								$worksheet->writeString($row, 0, utf8_decode($result[$i]['value']), $format_header);
+								$worksheet->mergeCells($row, 0, $row, $celltomerge);
+								$row++;
+
+								$stmt = $mysql->prepare($sql['excel_get-trucks_2']);
+								$stmt->bind_params('eng', $result[$i]['ID'], '1');
+								if ($stmt->execute()) {
+										$trucks = $stmt->fetch_all();
+										foreach ($trucks as $truck) {
+												if ($truck['truck_saxon-id'] != '')
+														$worksheet->writeUrl($row, 0, 'http://saxonrt.eu/sys/aktualis_ajax_truck_details.php?lang=' . $_REQUEST['lang'] . '&id=' . $truck['truck_id'], $truck['truck_saxon-id'], $format_body_url);
+												$worksheet->write($row, 1, $truck['truck_make'], $format_body);
+												$worksheet->write($row, 2, $truck['truck_model'], $format_body);
+												$worksheet->write($row, 3, $truck['truck_fuel'], $format_body);
+												$worksheet->write($row, 4, $truck['truck_max-load'], $format_body);
+												$worksheet->write($row, 5, $truck['truck_max-height'], $format_body);
+												$worksheet->write($row, 6, utf8_decode($truck['truck_location']), $format_body);
+												$worksheet->write($row, 7, $truck['truck_status'], $format_body);
+												if ($price)
+														$worksheet->write($row, 8, $truck['truck_cost'], $format_body);
+												if ($showcomment)
+														$worksheet->write($row, 8 + ($price ? 1 : 0), $truck['truck_short-comment'], $format_body);
+												$row++;
+										}
+
+										$row++;
+										$row++;
+								}
+						}
+				}
+		}
+
+		$workbook->close();
+}
+?>

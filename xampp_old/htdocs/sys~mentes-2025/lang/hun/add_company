@@ -1,0 +1,119 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+body
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+</style>
+
+<script type="text/javascript" src="/js/framework/prototype.js"></script>
+<script type="text/javascript">
+function GetSimilarCompanies()
+{
+
+    var company = document.getElementById('company_name').value;
+    if (company.length > 2)
+    {
+        var url = "/sys/admin_ajax_add_company.php?searchstring=" + company;
+        new Ajax.Request(url, {
+        method: 'get',
+        onSuccess: function(transport)
+          {
+            document.getElementById('similarCompanies').innerHTML = transport.responseText;
+          }});
+    }
+}
+
+function CountryUpdated()
+{
+    var country = document.getElementById('company_country').value;
+    var url = "/sys/admin_ajax_add_company_country_selection.php?id=" + country;
+    new Ajax.Request(url, {
+    method: 'get',
+    onSuccess: function(transport)
+      {
+
+        var country_a = eval('(' + transport.responseText + ')');
+        document.getElementById('zip_prefix').innerHTML = country_a[0].country_prefix;
+        document.getElementById('phone_prefix').innerHTML = country_a[0].country_phoneprefix;
+        document.getElementById('fax_prefix').innerHTML = country_a[0].country_phoneprefix;
+      }});
+}
+</script>
+
+</head>
+<body onload="CountryUpdated();">
+    <table>
+    <tr>
+    <td style="width: 210px">
+        <form method="post" action="admin_add_company.php" accept-charset="utf-8">
+          <div style="height:48px; width:180px;">
+            <label>
+              <span style="font-size:14px; font-weight:bold">Cég</span> neve:<br />
+              <input type="text" id="company_name" name="company_name" onChange="GetSimilarCompanies();" value="{$COMPANY_NAME}" />
+            </label>
+          </div>
+          <div style="height:48px; width:180px;">
+            <label>
+              Ország:<br />
+              <select id="company_country" name="company_country" onChange="CountryUpdated();">
+                {$COUNTRY_LIST}
+              </select>
+            </label>
+          </div>
+          <div style="height:48px; width:180px;">
+            <label>
+              Irányítószám:<br />
+              <span style="font-weight:bold" id="zip_prefix"></span><input type="text" id="company_zip" name="company_zip" value="{$COMPANY_ZIP}" />
+            </label>
+          </div>
+          <div style="height:48px; width:180px;">
+            <label>
+              Város:<br />
+              <input type="text" id="company_city" name="company_city" value="{$COMPANY_CITY}" />
+            </label>
+          </div>
+          <div style="height:48px; width:180px;">
+            <label>
+              Cím:<br />
+              <input type="text" id="company_adr" name="company_adr" value="{$COMPANY_ADDRESS}" />
+            </label>
+          </div>
+          <div style="height:48px; width:210px;">
+            <label>
+              Cég <strong>központi</strong> telefonszáma:<br />
+              <span style="font-weight:bold" id="phone_prefix"></span><input type="text" id="company_phone" name="company_phone" value="{$COMPANY_PHONE}" />
+            </label>
+          </div>
+          <div style="height:48px; width:180px;">
+            <label>
+              Cég <strong>központi</strong> faxszáma:<br />
+              <span style="font-weight:bold" id="fax_prefix"></span><input type="text" id="company_fax" name="company_fax" value="{$COMPANY_FAX}" />
+            </label>
+          </div><div style="height:48px; width:180px;">
+            <label>
+              Cég <strong>központi</strong> email címe:<br />
+              <input type="text" id="company_mail" name="company_mail" value="{$COMPANY_MAIL}" />
+            </label>
+          </div>
+          <input type="submit" value="Mehet" />
+          <input type="hidden" value="true" id="sent" name="sent" />
+          <input type="hidden" value="{$COMPANY_ID}" id="company_id" name="company_id" />
+        </form>
+    </td>
+    <td style="vertical-align: top;">
+        <span style="font-weight:bold">A rendszerben levő hasonló nevű cégek </span>(a cégnév mezőből továbblépve frissül):<br />
+        <div id="similarCompanies">
+        </div>
+    </td>
+    </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<div class="error" style="height:40px; color:#900; font-weight:bold">
+{$ERROR}
+</div>
+<form style="width:60%" method="get" action="sys/text_insert.php">
+  </div>
+<strong>Szövg megadás:</strong>
+  <hr/>
+  <div style="height:48px; width:180px;">
+    <label>
+      Cím:<br />
+      <input type="text" id="realname" name="realname"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px;">
+    <label>
+      Tartalom:<br />
+      <input type="text" id="email" name="email"/>
+    </label>
+  </div>
+  
+ 
+  <br />
+  <hr />
+  <br />
+  <input type="hidden" value="1" name="adduser" id="adduser" />
+  <input type="submit" value="{$REG}" />
+</form>

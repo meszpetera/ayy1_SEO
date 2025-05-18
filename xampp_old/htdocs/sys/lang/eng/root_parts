@@ -1,0 +1,201 @@
+<script type="text/javascript">
+    function addRow()
+    {
+        var id = document.getElementById('count').innerHTML;
+    
+        document.getElementById('table1').innerHTML += 				
+				'<tr><td style="text-align:right;margin-right:8px;width:120px">alkatrész ' + id + ' :</td>' +
+                '<td><input type="text" id="part[' + id + '][name]" name="part[' + id + '][name]" style="width:240px" /> <br /></td>' +
+                '<td><input type="text" id="part[' + id + '][id]" name="part[' + id + '][id]" style="width:120px" /> <br /></td>' +
+                '<td><input type="text" id="part[' + id + '][count]" name="part[' + id + '][count]" style="width:80px" /> <br /></td></tr>';
+                
+        document.getElementById('count').innerHTML = (parseInt(id)+1).toString();
+    }
+</script>
+<h1 style="font-size: 24px;margin:0px;">Alkatrészrendelés</h1>
+<div class="error" style="height:40px; color:#900; font-weight:bold; font-size:14px;">
+{$CAPTCHA_ERROR}
+</div>
+<div style="width:861px">
+	<div style="margin-left:auto;margin-right:auto;width:5000px;">
+		<form action="sys/root_parts_sendmail.php">
+            <table>
+				<tr>
+					<td colspan="4">
+						<h3>Érdeklődő adatai:</h3>
+					</td>
+				</tr>				
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Cég neve:
+					</td>
+					<td colspan="5">
+						<input type="text" id="company" name="company" style="width:300px" value="{$company}"/> <br />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Az Ön neve:
+					</td>
+					<td colspan="5">
+						<input type="text" id="client" name="client" style="width:300px" value="{$client}"/> <br />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Telefonszáma:
+					</td>
+					<td colspan="5">
+						<input type="text" id="tel" name="tel" style="width:300px" value="{$tel}"/> <br />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						e-mail címe:
+					</td>
+					<td colspan="5">
+						<input type="text" id="email" name="email" style="width:300px" value="{$email}"/> <br />
+					</td>
+				</tr>
+			</table>
+ 
+ <table id="table1">
+				<tr>
+					<td colspan="4">
+						<h3>Targonca adatai:</h3>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Targonca típusa:
+					</td>
+					<td colspan="3">
+						<input type="text" id="truck_type" name="truck_type" style="width:300px" value="{$truck_type}"/> <br />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Gyári szám:
+					</td>
+					<td colspan="3">
+						<input type="text" id="truck_serial" name="truck_serial" style="width:300px" value="{$truck_serial}"/> <br />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;margin-right:8px;">
+						Évjárat:
+					</td>
+					<td colspan="3">
+						<input type="text" id="truck_year" name="truck_year" style="width:300px" value="{$truck_year}"/> <br />
+					</td>
+				</tr>		
+			
+				<tr>
+					<td colspan="4">
+						<h3>Alkatrészek:</h3>
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="width:120px">
+						&nbsp;
+					</td>
+					<td style="width:120px">
+						Alkatrész megnevezése:
+					</td>
+					<td style="width:120px">
+						Cikkszám:
+					</td>
+					<td style="width:120px">
+						Darabszám:
+					</td>
+				</tr>
+                                
+                                <!--
+				<tr>
+					<td style="text-align:right;margin-right:8px;width:120px">
+						1. alkatrész:
+					</td>
+					<td>
+						<input type="text" id="part[1][name]" name="part[1][name]" style="width:240px" /> <br />
+					</td>
+					<td>
+						<input type="text" id="part[1][id]" name="part[1][id]" style="width:120px" /> <br />
+					</td>
+					<td>
+						<input type="text" id="part[1][count]" name="part[1][count]" style="width:80px" /> <br />
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="text-align:right;margin-right:8px;width:120px">
+						2. alkatrész:
+					</td>
+					<td>
+						<input type="text" id="part[2][name]" name="part[2][name]" style="width:240px" /> <br />
+					</td>
+					<td>
+						<input type="text" id="part[2][id]" name="part[2][id]" style="width:120px" /> <br />
+					</td>
+					<td>
+						<input type="text" id="part[2][count]" name="part[2][count]" style="width:80px" /> <br />
+					</td>
+				</tr>
+				
+				<tr>
+					<td style="text-align:right;margin-right:8px;width:120px">
+						3. alkatrész:
+					</td>
+					<td>
+						<input type="text" id="part[3][name]" name="part[3][name]" style="width:240px" /> <br />
+					</td>
+					<td>
+						<input type="text" id="part[3][id]" name="part[3][id]" style="width:120px" /> <br />
+					</td>
+					<td>
+						<input type="text" id="part[3][count]" name="part[3][count]" style="width:80px" /> <br />
+					</td>
+				</tr>
+                                -->
+                                {$part}
+                
+            </table>
+            
+            <table>				
+                <tr>
+					<td style="text-align:right;margin-right:8px;width:120px">
+                        <div style="visibility:hidden" id="count">{$count}</div>
+					</td>
+					<td><a href="#" onClick="addRow()">sor hozzáadása</a>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+				</tr>
+                                <tr>
+					<td style="text-align:right;margin-right:8px;width:120px">
+						Írja be a képen látható szöveget:
+					</td>
+					<td colspan="5">
+                                            <script type="text/javascript">
+                                             var RecaptchaOptions = {
+                                                theme : 'clean'
+                                             };
+                                             </script>
+						{$RECAPTCHA}
+					</td>
+				</tr>
+
+
+
+                <tr>
+                    <td colspan="4" style="text-align: center">
+                    <br />
+                        <input type="submit" value="küldés" />
+                    </tr>
+                </td>
+            </table>
+        </form>
+	</div>
+</div>

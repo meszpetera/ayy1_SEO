@@ -1,0 +1,19 @@
+
+[task_config]
+target_dir="saxonsv1_1"
+enable_thumb=true
+linkkey="saxonsv1_00113202FC01_1"
+max_dss_version=1
+data_version="dsm_3_1"
+sched_id=1
+trans_compress=false
+enable_delete=true
+backup_folders=["/Saxon/webupd"]
+trans_encrypt=false
+trans_bwlimit="0"
+backup_apps=[]
+trans_delta=false
+dsm4_last_bkp_user="www.saxonrt.eu"
+name="Rsync Backup Set 1"
+enable_meta=true
+repo_id=1

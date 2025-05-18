@@ -1,0 +1,10 @@
+<div id="user_data">
+<span style="font-weight:bold;text-decoration: underline;">Cégekhez nem rendelt felhasználók:</span><br />
+{$DATA}
+<br />
+</div>
+<hr style="width:100%;"/>
+<div id="read_users">
+<span style="font-weight:bold;text-decoration: underline;margin-bottom:10px;">A már cégekhez rendelt felhasználók:</span><br />
+{$USERS}
+</div>

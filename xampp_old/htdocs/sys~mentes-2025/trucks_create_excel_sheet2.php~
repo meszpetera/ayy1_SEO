@@ -1,0 +1,924 @@
+<?php
+ini_set("include_path", "./");
+set_time_limit(9999);
+/* DEBUG * /
+error_reporting(E_ALL & ~E_NOTICE ^ E_DEPRECATED & ~E_STRICT);
+ini_set('error_reporting', E_ALL & ~E_NOTICE ^ E_DEPRECATED & ~E_STRICT);
+ini_set("display_errors", 1);
+/* ***** */
+include("Spreadsheet/Excel/Writer.php");
+include("common.php");
+global $language, $sql;
+
+function out_excel($s) {
+	$s = iconv('UTF-8','ISO-8859-2//TRANSLIT', $s);
+	// $s = utf8_decode($s);
+	return $s;
+}
+
+$cellSize = Array(7,32,20,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24);
+
+$sql['excel_get-trucks_2'] = "SELECT
+  		`trucks`.*,
+      (SELECT value FROM truck_make_[0] WHERE truck_make_[0].ID = trucks.truck_make) AS truck_make_sub,
+      (SELECT value FROM truck_type_[0] WHERE truck_type_[0].ID = trucks.truck_type) AS truck_type_sub,
+      (SELECT value FROM truck_functions_[0] WHERE truck_functions_[0].ID = trucks.truck_function) AS truck_function_sub,
+      (SELECT value FROM truck_fuel_[0] WHERE truck_fuel_[0].ID = trucks.truck_fuel) AS truck_fuel_sub,
+      (SELECT value FROM truck_status_[0] WHERE truck_status_[0].ID = trucks.truck_status) AS truck_status_sub,
+      CONCAT_WS(' ', (SELECT value FROM truck_location WHERE truck_location.depot = trucks.truck_depot AND truck_location.subdepot = 0), (SELECT value FROM truck_location WHERE truck_location.depot = trucks.truck_depot AND truck_location.subdepot = trucks.`truck_sub-depot` AND truck_location.subdepot != '0')) AS truck_location,
+			(
+				SELECT value
+				FROM truck_location
+				WHERE truck_location.depot = trucks.truck_depot
+					AND truck_location.subdepot = 0
+			) AS `truck_location_1`,
+			(
+				SELECT value
+				FROM truck_location
+				WHERE truck_location.depot = trucks.truck_depot
+					AND truck_location.subdepot = trucks.`truck_sub-depot`
+					AND truck_location.subdepot != '0'
+			) AS truck_location_2
+    FROM `trucks`
+    WHERE `truck_type` = {1}  AND `truck_state` = 'A'
+    ORDER BY
+    IF( `truck_ispart` =  0 , 0 , 1 ),
+    IF( `truck_ispart` =  2 , 0 , 1 ),
+    IF( `truck_ispart` =  5 , 0 , 1 ),
+    IF( `truck_ispart` =  7 , 0 , 1 ),
+    IF( `truck_ispart` =  3 , 0 , 1 ),
+    IF( `truck_ispart` =  4 , 0 , 1 ),
+    IF( `truck_ispart` =  8 , 0 , 1 ),
+    IF( `truck_ispart` = 19 , 0 , 1 ),
+    IF( `truck_ispart` = 18 , 0 , 1 ),
+    IF( `truck_ispart` = 10 , 0 , 1 ),
+    IF( `truck_ispart` =  9 , 0 , 1 ),
+    IF( `truck_ispart` =  6 , 0 , 1 ),
+    IF( `truck_ispart` = 14 , 0 , 1 ),
+    IF( `truck_ispart` = 17 , 0 , 1 ),
+    IF( `truck_ispart` = 12 , 0 , 1 ),
+    IF( `truck_ispart` = 16 , 0 , 1 ),
+    IF( `truck_ispart` = 13 , 0 , 1 ),
+    IF( `truck_ispart` = 15 , 0 , 1 ),
+    IF( `truck_ispart` = 11 , 0 , 1 ),
+    `truck_make`, `truck_fuel`, `truck_max-load`, `truck_saxon-id`";
+
+
+  $sql['excel_get-trucks_2pub'] = "SELECT
+  		`trucks`.*,
+      (SELECT value FROM truck_make_[0] WHERE truck_make_[0].ID = trucks.truck_make) AS truck_make_sub,
+      (SELECT value FROM truck_type_[0] WHERE truck_type_[0].ID = trucks.truck_type) AS truck_type_sub,
+      (SELECT value FROM truck_functions_[0] WHERE truck_functions_[0].ID = trucks.truck_function) AS truck_function_sub,
+      (SELECT value FROM truck_fuel_[0] WHERE truck_fuel_[0].ID = trucks.truck_fuel) AS truck_fuel_sub,
+      (SELECT value FROM truck_status_[0] WHERE truck_status_[0].ID = trucks.truck_status) AS truck_status_sub,
+      CONCAT_WS(' ', (SELECT value FROM truck_location WHERE truck_location.depot = trucks.truck_depot AND truck_location.subdepot = 0), (SELECT value FROM truck_location WHERE truck_location.depot = trucks.truck_depot AND truck_location.subdepot = trucks.`truck_sub-depot` AND truck_location.subdepot != '0')) AS truck_location,
+			(
+				SELECT value
+				FROM truck_location
+				WHERE truck_location.depot = trucks.truck_depot
+					AND truck_location.subdepot = 0
+			) AS `truck_location_1`,
+			(
+				SELECT value
+				FROM truck_location
+				WHERE truck_location.depot = trucks.truck_depot
+					AND truck_location.subdepot = trucks.`truck_sub-depot`
+					AND truck_location.subdepot != '0'
+			) AS truck_location_2
+    FROM `trucks`
+    WHERE truck_public = {3} AND `truck_type` = {1} AND `truck_state` = 'A'
+    ORDER BY
+    IF( `truck_ispart` =  0 , 0 , 1 ),
+    IF( `truck_ispart` =  2 , 0 , 1 ),
+    IF( `truck_ispart` =  5 , 0 , 1 ),
+    IF( `truck_ispart` =  7 , 0 , 1 ),
+    IF( `truck_ispart` =  3 , 0 , 1 ),
+    IF( `truck_ispart` =  4 , 0 , 1 ),
+    IF( `truck_ispart` =  8 , 0 , 1 ),
+    IF( `truck_ispart` = 19 , 0 , 1 ),
+    IF( `truck_ispart` = 18 , 0 , 1 ),
+    IF( `truck_ispart` = 10 , 0 , 1 ),
+    IF( `truck_ispart` =  9 , 0 , 1 ),
+    IF( `truck_ispart` =  6 , 0 , 1 ),
+    IF( `truck_ispart` = 14 , 0 , 1 ),
+    IF( `truck_ispart` = 17 , 0 , 1 ),
+    IF( `truck_ispart` = 12 , 0 , 1 ),
+    IF( `truck_ispart` = 16 , 0 , 1 ),
+    IF( `truck_ispart` = 13 , 0 , 1 ),
+    IF( `truck_ispart` = 15 , 0 , 1 ),
+    IF( `truck_ispart` = 11 , 0 , 1 ),
+    `truck_make`, `truck_fuel`, `truck_max-load`, `truck_saxon-id`";
+
+if (isset($_REQUEST['kategoria'])) {
+
+		$publikus=$_REQUEST['publikus'];
+
+		if (isset($_REQUEST['lang']) and $_REQUEST['lang'] == "hun") {
+				$lang = "hun";
+		} else {
+				$lang = "eng";
+		}
+
+
+		$price = isset($_REQUEST['showprice']) && $_REQUEST['showprice'] == '1' ? true : false;
+		$showcomment = isset($_REQUEST['showcomment']) && $_REQUEST['showcomment'] == '1' ? true : false;
+		$celltomerge = $price ? 11 : 10;
+
+		$workbook = new Spreadsheet_Excel_Writer();
+		if ($_REQUEST['partsonly'] == 1)
+				$workbook->send('saxon_parts.xls');
+		else if ($_REQUEST['trucksonly'] == 1)
+				$workbook->send('saxon_trucks.xls');
+		else
+				$workbook->send('saxon_trucks_and_parts.xls');
+
+		//Az excel file akkor is elkészül, ha itt meg állítom die()-al.
+
+		if ($_REQUEST['kategoria'] == 'a' or $_REQUEST['kategoria'] == 'b' or $_REQUEST['kategoria'] == 'c') {
+				$item = 0;
+				$kategoria = $_REQUEST['kategoria'];
+
+				$worksheet = & $workbook->addWorksheet('Saxon Zrt. ALL IN ONE');
+				$worksheet->setLandscape();
+				$worksheet->setPrintScale(96);
+				$worksheet->setMargins(0.4);
+				$worksheet->freezePanes(array(1, 0));
+
+				$cell = 0;
+				
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Saxonszám'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Fajta'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Gyartmány'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tipus'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Funkció'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Különleges tulajdonság'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Felszereltség'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Megjegyzés'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Üzemmód'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Teherbírás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Emelő magasság'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Első kerék'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Hátsó kerék'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Motor'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Akkumulátor'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Villák'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tárolás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tárolás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Mező'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Mező'));
+				$cell++;
+
+				if($price) $worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				if($price) $worksheet->write(0, $cell, out_excel('Eladási ár'));
+				if($price) $cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Eladó neve'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Bizonylatszám'));
+				$cell++;
+
+				if($price) $worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				if($price) $worksheet->write(0, $cell, out_excel('Vételi ár'));
+				if($price) $cell++;
+
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Category'));
+				$cell++;
+
+
+
+				$mysql = get_connection();
+				$mysql->execute($sql['setutf']);
+
+				$format_header = & $workbook->addFormat();
+				$format_header->setFontFamily('Arial');
+				$format_header->setSize(12);
+				$format_header->setBold(1);
+				$workbook->setCustomColor(32, 210, 210, 210);
+				$format_header->setFgColor(32);
+
+				$format_ispart = & $workbook->addFormat();
+				$format_ispart->setFontFamily('Arial');
+				$format_ispart->setSize(14);
+				$format_ispart->setBold(1);
+				$format_ispart->setAlign('center');
+				$workbook->setCustomColor(32, 210, 210, 210);
+				$format_ispart->setFgColor(32);
+				$format_ispart->setColor('red');
+
+				$format_body = & $workbook->addFormat();
+				$format_body->setFontFamily('Arial');
+				$format_body->setSize(8);
+
+				$format_body_url = & $workbook->addFormat();
+				$format_body_url->setFontFamily('Arial');
+				$format_body_url->setSize(8);
+				$workbook->setCustomColor(33, 0, 0, 192);
+				$format_body_url->setColor(33);
+
+				if ($kategoria == 'a') {
+						$stmt = $mysql->prepare($sql['excel_get-sum']);
+
+						//$stmt->bind_params($lang, '0');
+						$stmt->bind_params($lang);
+				}
+
+				if ($kategoria == 'b') {
+						$stmt = $mysql->prepare($sql['excel_get-sum-b']);
+
+						//$stmt->bind_params($lang, '0');
+						$stmt->bind_params($lang, 0, 2, 3, 5);
+				}
+
+				if ($kategoria == 'c') {
+						$stmt = $mysql->prepare($sql['excel_get-sum-c']);
+
+						//$stmt->bind_params($lang, '0');
+						$stmt->bind_params($lang, 1, 4, 6);
+				}
+
+				if ($stmt->execute()) {
+						$row = 1;
+						$result = $stmt->fetch_all();
+						$lastIspart = '#';
+						for ($i = 0; $i < count($result); $i++) {
+								$CategList = false;
+								//publikus rész is hozzávéve
+								if ($publikus=='x'){
+										$stmt = $mysql->prepare($sql['excel_get-trucks_2']);
+										$stmt->bind_params($lang, $result[$i]['ID'], $result[$i]['ispart']);
+								}
+								else{
+										$stmt = $mysql->prepare($sql['excel_get-trucks_2pub']);
+										$stmt->bind_params($lang, $result[$i]['ID'], $result[$i]['ispart'], $publikus);
+								}
+								if ($stmt->execute()) {
+									$trucks = $stmt->fetch_all();
+									if(count($trucks)>0 AND isSet($trucks[0]['truck_id'])) { $CategList = true; } else { $CategList = false; }
+									if($CategList) {
+										foreach ($trucks as $truck) {
+												$item++;
+												$cell = 0;
+												if ($truck['truck_saxon-id'] != '') {
+														$link = 'http://saxonrt.hu/sys/aktualis_ajax_truck_details.php?lang=' . $_REQUEST['lang'] . '&id=' . $truck['truck_id'];
+														// $link = 'https://saxonrt.hu/';
+														$worksheet->writeUrl($row, $cell, $link, $truck['truck_saxon-id'], $format_body_url);
+												}
+												$cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_type_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_make_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_model']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_function_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_short-comment']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_extras']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_desc']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_fuel_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_max-load']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_max-height']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_steered-wheel']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_powered-wheel']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_engine']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel(str_replace(Array("\r\n","\r","\n")," ",$truck['truck_public-desc'])), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_forks']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_location_1']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_location_2']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_loc_x']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_loc_y']), $format_body); $cell++;
+												if($price) $worksheet->write($row, $cell, out_excel($truck['truck_cost']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_seller_name']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_seller_invoicenum']), $format_body); $cell++;
+												if($price) $worksheet->write($row, $cell, out_excel($truck['truck_seller_price']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($language['aktualis:ispart'][$truck['truck_ispart']]['value']), $format_body); $cell++;
+												$row++;
+										}
+									}
+								}
+						}
+				}
+		}
+		else {
+
+				$lang = $_REQUEST['lang'];
+				$kategoria = (int) $_REQUEST['kategoria'];
+
+				$worksheet = & $workbook->addWorksheet('Saxon Zrt. PARTS');
+
+				$worksheet->setLandscape();
+				$worksheet->setPrintScale(96);
+				$worksheet->setMargins(0.4);
+				$worksheet->freezePanes(array(1, 0));
+
+				$cell = 0;
+				
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Saxonszám'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Fajta'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Gyartmány'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tipus'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Funkció'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Különleges tulajdonság'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Felszereltség'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Megjegyzés'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Üzemmód'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Teherbírás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Emelő magasság'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Első kerék'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Hátsó kerék'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Motor'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Akkumulátor'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Villák'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tárolás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tárolás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Mező'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Mező'));
+				$cell++;
+
+				if($price) $worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				if($price) $worksheet->write(0, $cell, out_excel('Eladási ár'));
+				if($price) $cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Eladó neve'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Bizonylatszám'));
+				$cell++;
+
+				if($price) $worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				if($price) $worksheet->write(0, $cell, out_excel('Vételi ár'));
+				if($price) $cell++;
+
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Category'));
+				$cell++;
+
+
+				$mysql = get_connection();
+				$mysql->execute($sql['setutf']);
+
+				$format_header = & $workbook->addFormat();
+				$format_header->setFontFamily('Arial');
+				$format_header->setSize(12);
+				$format_header->setBold(1);
+				$workbook->setCustomColor(32, 210, 210, 210);
+				$format_header->setFgColor(32);
+
+				$format_ispart = & $workbook->addFormat();
+				$format_ispart->setFontFamily('Arial');
+				$format_ispart->setSize(14);
+				$format_ispart->setBold(1);
+				$workbook->setCustomColor(32, 210, 210, 210);
+				$format_ispart->setFgColor(32);
+
+				$stmt = $mysql->prepare($sql['excel_get-types_2']);
+				$stmt->bind_params($lang, $kategoria);
+
+				if ($stmt->execute()) {
+						$row = 1;
+						$result = $stmt->fetch_all();
+
+						for ($i = 0; $i < count($result); $i++) {
+								
+								if ($publikus=='x'){
+										$stmt = $mysql->prepare($sql['excel_get-trucks_2']);
+										$stmt->bind_params($lang, $result[$i]['ID'], $kategoria);
+								}else{
+										$stmt = $mysql->prepare($sql['excel_get-trucks_2pub']);
+										$stmt->bind_params($lang, $result[$i]['ID'], $kategoria, $publikus);
+								}
+								if ($stmt->execute()) {
+										$trucks = $stmt->fetch_all();
+										foreach ($trucks as $truck) {
+												$cell = 0;
+												if ($truck['truck_saxon-id'] != '') {
+														$link = 'http://saxonrt.hu/sys/aktualis_ajax_truck_details.php?lang=' . $_REQUEST['lang'] . '&id=' . $truck['truck_id'];
+														// $link = 'https://saxonrt.hu/';
+														$worksheet->writeUrl($row, $cell, $link, $truck['truck_saxon-id'], $format_body_url);
+												}
+												$cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_type_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_make_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_model']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_function_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_short-comment']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_extras']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_desc']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_fuel_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_max-load']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_max-height']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_steered-wheel']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_powered-wheel']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_engine']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel(str_replace(Array("\r\n","\r","\n")," ",$truck['truck_public-desc'])), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_forks']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_location_1']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_location_2']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_loc_x']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_loc_y']), $format_body); $cell++;
+												if($price) $worksheet->write($row, $cell, out_excel($truck['truck_cost']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_seller_name']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_seller_invoicenum']), $format_body); $cell++;
+												if($price) $worksheet->write($row, $cell, out_excel($truck['truck_seller_price']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($language['aktualis:ispart'][$truck['truck_ispart']]['value']), $format_body); $cell++;
+												$row++;
+										}
+								}
+						}
+				}
+		}
+
+		$workbook->close();
+} else {
+		$price = isset($_REQUEST['showprice']) && $_REQUEST['showprice'] == '1' ? true : false;
+		$showcomment = isset($_REQUEST['showcomment']) && $_REQUEST['showcomment'] == '1' ? true : false;
+		$celltomerge = $price ? 11 : 10;
+
+		$workbook = new Spreadsheet_Excel_Writer();
+		if ($_REQUEST['partsonly'] == 1)
+				$workbook->send('saxon_parts.xls');
+		else if ($_REQUEST['trucksonly'] == 1)
+				$workbook->send('saxon_trucks.xls');
+		else
+				$workbook->send('saxon_trucks_and_parts.xls');
+
+		//trucks
+		if ($_REQUEST['partsonly'] != 1) {
+				$worksheet = & $workbook->addWorksheet('Saxon Zrt. TRUCKS');
+				$worksheet->setLandscape();
+				$worksheet->setPrintScale(96);
+				$worksheet->setMargins(0.4);
+				$worksheet->freezePanes(array(1, 0));
+				$cell = 0;
+				
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Saxonszám'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Fajta'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Gyartmány'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tipus'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Funkció'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Különleges tulajdonság'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Felszereltség'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Megjegyzés'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Üzemmód'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Teherbírás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Emelő magasság'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Első kerék'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Hátsó kerék'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Motor'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Akkumulátor'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Villák'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tárolás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tárolás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Mező'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Mező'));
+				$cell++;
+
+				if($price) $worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				if($price) $worksheet->write(0, $cell, out_excel('Eladási ár'));
+				if($price) $cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Eladó neve'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Bizonylatszám'));
+				$cell++;
+
+				if($price) $worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				if($price) $worksheet->write(0, $cell, out_excel('Vételi ár'));
+				if($price) $cell++;
+
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Category'));
+				$cell++;
+
+		}
+
+
+		$mysql = get_connection();
+		$mysql->execute($sql['setutf']);
+
+		$format_header = & $workbook->addFormat();
+		$format_header->setFontFamily('Arial');
+		$format_header->setSize(12);
+		$format_header->setBold(1);
+		$workbook->setCustomColor(32, 210, 210, 210);
+		$format_header->setFgColor(32);
+
+		$format_body = & $workbook->addFormat();
+		$format_body->setFontFamily('Arial');
+		$format_body->setSize(8);
+
+		$format_body_url = & $workbook->addFormat();
+		$format_body_url->setFontFamily('Arial');
+		$format_body_url->setSize(8);
+		$workbook->setCustomColor(33, 0, 0, 192);
+		$format_body_url->setColor(33);
+
+		$stmt = $mysql->prepare($sql['excel_get-types_2']);
+		$stmt->bind_params('eng', '0');
+
+		if ($stmt->execute()) {
+				$row = 1;
+				$result = $stmt->fetch_all();
+
+				for ($i = 0; $i < count($result); $i++) {
+
+						$stmt = $mysql->prepare($sql['excel_get-trucks_2']);
+						$stmt->bind_params('eng', $result[$i]['ID'], '0');
+						if ($stmt->execute()) {
+								$trucks = $stmt->fetch_all();
+								foreach ($trucks as $truck) {
+										$cell = 0;
+										if ($truck['truck_saxon-id'] != '') {
+											$link = 'http://saxonrt.hu/sys/aktualis_ajax_truck_details.php?lang=' . $_REQUEST['lang'] . '&id=' . $truck['truck_id'];
+											// $link = 'https://saxonrt.hu/';
+											$worksheet->writeUrl($row, $cell, $link, $truck['truck_saxon-id'], $format_body_url);
+										}
+										$cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_type_sub']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_make_sub']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_model']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_function_sub']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_short-comment']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_extras']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_desc']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_fuel_sub']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_max-load']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_max-height']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_steered-wheel']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_powered-wheel']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_engine']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel(str_replace(Array("\r\n","\r","\n")," ",$truck['truck_public-desc'])), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_forks']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_location_1']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_location_2']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_loc_x']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_loc_y']), $format_body); $cell++;
+										if($price) $worksheet->write($row, $cell, out_excel($truck['truck_cost']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_seller_name']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($truck['truck_seller_invoicenum']), $format_body); $cell++;
+										if($price) $worksheet->write($row, $cell, out_excel($truck['truck_seller_price']), $format_body); $cell++;
+										$worksheet->write($row, $cell, out_excel($language['aktualis:ispart'][$truck['truck_ispart']]['value']), $format_body); $cell++;
+										$row++;
+								}
+						}
+				}
+		}
+		//}
+
+		if ($_REQUEST['trucksonly'] != 1) {
+				$worksheet = & $workbook->addWorksheet('Saxon Zrt. PARTS');
+				$worksheet->setLandscape();
+				$worksheet->setPrintScale(96);
+				$worksheet->setMargins(0.4);
+				$worksheet->freezePanes(array(1, 0));
+
+				$cell = 0;
+				
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Saxonszám'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Fajta'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Gyartmány'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tipus'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Funkció'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Különleges tulajdonság'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Felszereltség'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Megjegyzés'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Üzemmód'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Teherbírás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Emelő magasság'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Első kerék'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Hátsó kerék'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Motor'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Akkumulátor'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Villák'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tárolás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Tárolás'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Mező'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Mező'));
+				$cell++;
+
+				if($price) $worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				if($price) $worksheet->write(0, $cell, out_excel('Eladási ár'));
+				if($price) $cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Eladó neve'));
+				$cell++;
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Bizonylatszám'));
+				$cell++;
+
+				if($price) $worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				if($price) $worksheet->write(0, $cell, out_excel('Vételi ár'));
+				if($price) $cell++;
+
+
+				$worksheet->setColumn(0, $cell, $cellSize[$cell]);
+				$worksheet->write(0, $cell, out_excel('Category'));
+				$cell++;
+
+				$mysql = get_connection();
+				$mysql->execute($sql['setutf']);
+
+				$format_header = & $workbook->addFormat();
+				$format_header->setFontFamily('Arial');
+				$format_header->setSize(12);
+				$format_header->setBold(1);
+				$workbook->setCustomColor(32, 210, 210, 210);
+				$format_header->setFgColor(32);
+
+				$stmt = $mysql->prepare($sql['excel_get-types_2']);
+				$stmt->bind_params('eng', '1');
+
+				if ($stmt->execute()) {
+						$row = 1;
+						$result = $stmt->fetch_all();
+
+						for ($i = 0; $i < count($result); $i++) {
+
+								$stmt = $mysql->prepare($sql['excel_get-trucks_2']);
+								$stmt->bind_params('eng', $result[$i]['ID'], '1');
+								if ($stmt->execute()) {
+										$trucks = $stmt->fetch_all();
+										foreach ($trucks as $truck) {
+												$cell = 0;
+												if ($truck['truck_saxon-id'] != '') {
+														$link = 'http://saxonrt.hu/sys/aktualis_ajax_truck_details.php?lang=' . $_REQUEST['lang'] . '&id=' . $truck['truck_id'];
+														// $link = 'https://saxonrt.hu/';
+														$worksheet->writeUrl($row, $cell, $link, $truck['truck_saxon-id'], $format_body_url);
+												}
+												$cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_type_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_make_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_model']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_function_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_short-comment']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_extras']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_desc']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_fuel_sub']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_max-load']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_max-height']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_steered-wheel']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_powered-wheel']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_engine']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel(str_replace(Array("\r\n","\r","\n")," ",$truck['truck_public-desc'])), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_forks']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_location_1']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_location_2']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_loc_x']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_loc_y']), $format_body); $cell++;
+												if($price) $worksheet->write($row, $cell, out_excel($truck['truck_cost']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_seller_name']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($truck['truck_seller_invoicenum']), $format_body); $cell++;
+												if($price) $worksheet->write($row, $cell, out_excel($truck['truck_seller_price']), $format_body); $cell++;
+												$worksheet->write($row, $cell, out_excel($language['aktualis:ispart'][$truck['truck_ispart']]['value']), $format_body); $cell++;
+												$row++;
+										}
+								}
+						}
+				}
+		}
+
+		$workbook->close();
+}
+?>

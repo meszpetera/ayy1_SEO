@@ -1,0 +1,344 @@
+<div id="keresobanner_en" class="keresobanner">
+<!--<form id="targonca_kereso" method="post" action="index.php?page=aktualis&ispart=0">
+  <input id="targonca" name="__saxonid" type="text" />
+  <input type="submit" value="" class="button" />
+</form>
+<form id="alkatresz_kereso" method="post" action="index.php?page=aktualis&ispart=1">
+  <input id="targonca" name="__saxonid" type="text" />
+  <input type="submit" value="" class="button" />
+</form>
+-->
+<a href="/?lang=eng&page=berlet" class="targonca_kereso">targonca</a>
+<a href="/?lang=eng&page=alkatreszek" class="alkatresz_kereso">alkatresz</a>
+<a href="/?lang=eng&page=szerviz" class="szerviz">szerviz</a>
+</div>
+
+
+<table style="border-collapse: collapse; border-spacing: 0px;">
+    <tr>
+        <td style="vertical-align: top;">
+            <table style="width: 420px;">
+                <tr style="height: 260px;">
+                    <td style="border: 1px solid #ffcc01;" colspan="2"><!-- flash -->
+                        <script language="javascript">
+                            if (AC_FL_RunContent == 0) {
+                                alert("This page requires AC_RunActiveContent.js.");
+                            } else {
+                                AC_FL_RunContent(
+                                    'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
+                                    'width', '420',
+                                    'height', '257',
+                                    'src', 'intro',
+                                    'quality', 'high',
+                                    'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+                                    'align', 'middle',
+                                    'play', 'true',
+                                    'loop', 'true',
+                                    'scale', 'showall',
+                                    'wmode', 'window',
+                                    'devicefont', 'false',
+                                    'id', 'intro',
+                                    'bgcolor', '#007b6e',
+                                    'name', 'intro',
+                                    'menu', 'false',
+                                    'allowFullScreen', 'false',
+                                    'allowScriptAccess','sameDomain',
+                                    'movie', 'img/intro/intro',
+                                    'salign', ''
+                                    ); //end AC code
+                            }
+                        </script>
+                        <noscript>
+                            <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="420" height="257" id="intro" align="middle">
+                            <param name="allowScriptAccess" value="sameDomain" />
+                            <param name="allowFullScreen" value="false" />
+                            <param name="movie" value="img/intro/intro.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#007b6e" />	<embed src="img/intro/intro.swf" quality="high" bgcolor="#007b6e" width="720" height="440" name="intro" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                            </object>
+                        </noscript>
+                    </td>
+                </tr>
+                <tr style="border: 1px solid #ffcc01; height: 260px;">
+                    <td style="border: 1px solid #ffcc01; width: 280px; vertical-align: top;"><!-- weekly special -->
+                        <div style="background: #ff0; width: 268px; height: 32px; font-weight: bold; font-size: 22px; text-align: center; margin-bottom: 2px; padding-left: 4px; padding-right: 4px;">
+                            20% OFF<!-- forog: WEEKLY OFFER: 20% OFF | HETI AJÁNLAT: ELENGEDJÜK AZ ÁFÁT  -->
+                        </div>
+                        <a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$ws_id}">
+                            <img src="{$daily_offer_image}" style="border-style: none; width:{$daily_offer_image_width}px; height:{$daily_offer_image_height}px" />
+                        </a>
+                        <div style="width: 180px; float: left; padding-left: 4px; padding-top: 4px; font-weight: bold;">
+                            {$daily_offer_make} {$daily_offer_model},<br />
+                            {$daily_offer_type},<br />
+                            {$daily_offer_status},<br />
+                            {$daily_offer_fuel}, {$daily_offer_max-load} kg, {$daily_offer_max-height} mm
+                        </div>
+                        <div style="text-align:right; width: 88px; font-weight: bold; font-size: 16px; float: left; padding-right: 4px;">
+                            {$daily_offer_saxon-id}<br />
+                            <span style="color: red; text-decoration: line-through;">{$daily_offer_price} &euro; + VAT</span><br />
+                            {$daily_offer_price_2} &euro; + VAT
+                        </div>
+                    </td>
+                    <td style="border: 1px solid #ffcc01; width: 140px;"><!-- info -->
+    <strong>Parts:</strong><br />
+    +36-29/358-720<br />
+    +36-30/815-2730<br />
+    <br />
+    <strong>Service:</strong><br />
+    +36-30/684-2896<br />
+    +36-30/398-7794<br />
+    <br />
+    <strong>Truck sales and rental:</strong><br />
+    +36-30/9341-152<br />
+    +36-30/931-6569<br />
+    +36-30/684-2897<br />
+    <br />
+    <strong>Inspection ISO:</strong><br />
+    +36-30/6897-419<br />
+    <br />
+    <strong>Transportation:</strong><br />
+    +36-30/398-7794<br />
+    <br />
+    <span style="font-weight: bold;">E-mail:</span><br />
+    <a href="mailto:saxonrt@t-online.hu">saxonrt@t-online.hu</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td style="vertical-align: top;">
+            <table style="width: 260px;">
+                <tr>
+                    <td style="border: 1px solid #ffcc01; width: 260px; height: 150px; vertical-align: top;"><!-- 2 on sale -->
+                        <div style="background: #ff0; width: 268px; height: 32px; font-weight: bold; font-size: 22px; text-align: center; margin-bottom: 2px; padding-left: 4px; padding-right: 4px;">
+                            SPECIAL OFFER
+                        </div>
+                        <div style="width: 138px; float:left;">
+                            <a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$so1_id}">
+                                <img src="{$so1_img}" style="border-style: none; width:{$so1_w}px; height:{$so1_h}px" />
+                            </a>
+                            {$so1_saxon-id}<br />
+                            {$so1_name}<br />
+                            {$so1_price} + VAT
+                        </div>
+                        <div style="width: 134px; float:left">
+                            <a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$so2_id}">
+                                <img src="{$so2_img}" style="border-style: none; width:{$so2_w}px; height:{$so2_h}px" />
+                            </a>
+                            {$so2_saxon-id}<br />
+                            {$so2_name}<br />
+                            {$so2_price} + VAT
+                        </div>
+                    </td>
+                </tr>
+                <tr style="border: 1px solid #ffcc01;">
+
+                <td>
+                <a href="index.php?lang=eng&page=aktualis&__ispart=0" class="gep_banner_en">Search trucks?</a>
+
+                <a href="index.php?lang=eng&page=aktualis&__ispart=1" class="fodarab_banner_en">Search parts?</a>
+
+                    <!--<td style="border: 1px solid #ffcc01; width: 260px; height: 140px;"> search
+                        <div style="background: #ff0; width: 268px; height: 32px; font-weight: bold; font-size: 22px; text-align: center; margin-bottom: 2px; padding-left: 4px; padding-right: 4px;">
+                            750 IN STOCK
+                        </div>
+                        <form action="index.php">
+                            <input type="hidden" name="page" value="aktualis" />
+                            <input type="hidden" name="lang" value="eng" />
+                            <table>
+                                <tr>
+                                    <td>Quicksearch:</td>
+                                    <td>
+                                        <input style="width: 140px;" id="__saxonid" name="__saxonid" type="text" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>{$MAKE}:</td>
+                                    <td>
+                                        <select style="width: 140px;" id="__make" name="__make">
+                                            {$MANUFACTURER_LIST}
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>{$TYPE}:</td>
+                                    <td>
+                                        <select style="width: 140px;" id="__type" name="__type">
+                                            {$TYPE_LIST}
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>{$STATUS}:</td>
+                                    <td>
+                                        <select style="width: 140px;" id="__status" name="__status">
+                                            {$STATUS_LIST}
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>{$MAX_LOAD}:</td>
+                                    <td>
+                                        <select style="width: 140px;" id="__maxload" name="__maxload">
+                                            {$MAX_LOAD_LIST}
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>{$FUEL}:</td>
+                                    <td>
+                                        <select style="width: 140px;" id="__fuel" name="__fuel">
+                                            {$FUEL_LIST}
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <input type="submit" value="search" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>-->
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ffcc01; width: 260px; height: 120px;"><!-- moments -->
+                        <div style="background: #ff0; width: 268px; height: 32px; font-weight: bold; font-size: 22px; text-align: center; margin-bottom: 2px; padding-left: 4px; padding-right: 4px;">
+                            RENTAL
+                        </div>
+                        <div id="moments">
+                            <img id="lol1" style="width: 276px" src="/img/siteFront-moments/1.jpg" />
+                            <img id="lol2" style="width: 276px; display:none;" src="/img/siteFront-moments/2.jpg" />
+                            <img id="lol3" style="width: 276px; display:none;" src="/img/siteFront-moments/3.jpg" />
+                            <img id="lol4" style="width: 276px; display:none;" src="/img/siteFront-moments/4.jpg" />
+                            <img id="lol5" style="width: 276px; display:none;" src="/img/siteFront-moments/5.jpg" />
+                            <img id="lol6" style="width: 276px; display:none;" src="/img/siteFront-moments/6.jpg" />
+                            <img id="lol7" style="width: 276px; display:none;" src="/img/siteFront-moments/7.jpg" />
+                            <img id="lol8" style="width: 276px; display:none;" src="/img/siteFront-moments/8.jpg" />
+                            <img id="lol9" style="width: 276px; display:none;" src="/img/siteFront-moments/9.jpg" />
+                            <img id="lol10" style="width: 276px; display:none;" src="/img/siteFront-moments/10.jpg" />
+                            <img id="lol11" style="width: 276px; display:none;" src="/img/siteFront-moments/11.jpg" />
+                            <img id="lol12" style="width: 276px; display:none;" src="/img/siteFront-moments/12.jpg" />
+                            <img id="lol13" style="width: 276px; display:none;" src="/img/siteFront-moments/13.jpg" />
+                            <img id="lol14" style="width: 276px; display:none;" src="/img/siteFront-moments/14.jpg" />
+                            <img id="lol15" style="width: 276px; display:none;" src="/img/siteFront-moments/15.jpg" />
+                            <img id="lol16" style="width: 276px; display:none;" src="/img/siteFront-moments/16.jpg" />
+                            <img id="lol17" style="width: 276px; display:none;" src="/img/siteFront-moments/17.jpg" />
+                            <img id="lol18" style="width: 276px; display:none;" src="/img/siteFront-moments/18.jpg" />
+                            <img id="lol19" style="width: 276px; display:none;" src="/img/siteFront-moments/19.jpg" />
+                            <img id="lol20" style="width: 276px; display:none;" src="/img/siteFront-moments/20.jpg" />
+                            <img id="lol21" style="width: 276px; display:none;" src="/img/siteFront-moments/21.jpg" />
+                            <img id="lol22" style="width: 276px; display:none;" src="/img/siteFront-moments/22.jpg" />
+                            <img id="lol23" style="width: 276px; display:none;" src="/img/siteFront-moments/23.jpg" />
+                            <img id="lol24" style="width: 276px; display:none;" src="/img/siteFront-moments/24.jpg" />
+    <img id="lol43" style="width: 276px; display:none;" src="/img/im30.jpg" />
+    <img id="lol44" style="width: 276px; display:none;" src="/img/im31.jpg" />
+    <img id="lol45" style="width: 276px; display:none;" src="/img/im32.jpg" />
+    <img id="lol46" style="width: 276px; display:none;" src="/img/im33.jpg" />
+    <img id="lol47" style="width: 276px; display:none;" src="/img/im34.jpg" />
+    <img id="lol48" style="width: 276px; display:none;" src="/img/im35.jpg" />
+    <img id="lol49" style="width: 276px; display:none;" src="/img/im36.jpg" />
+    <img id="lol50" style="width: 276px; display:none;" src="/img/im37.jpg" />
+    <img id="lol51" style="width: 276px; display:none;" src="/img/im38.jpg" />
+    <img id="lol52" style="width: 276px; display:none;" src="/img/im39.jpg" />
+    <img id="lol53" style="width: 276px; display:none;" src="/img/im40.jpg" />
+    <img id="lol54" style="width: 276px; display:none;" src="/img/im41.jpg" />
+    <img id="lol55" style="width: 276px; display:none;" src="/img/im42.jpg" />
+    <img id="lol56" style="width: 276px; display:none;" src="/img/im43.jpg" />
+    <img id="lol57" style="width: 276px; display:none;" src="/img/im44.jpg" />
+    <img id="lol58" style="width: 276px; display:none;" src="/img/im45.jpg" />
+    <img id="lol69" style="width: 276px; display:none;" src="/img/im46.jpg" />
+    <img id="lol60" style="width: 276px; display:none;" src="/img/im47.jpg" />
+    <img id="lol61" style="width: 276px; display:none;" src="/img/im48.jpg" />
+    <img id="lol62" style="width: 276px; display:none;" src="/img/im49.jpg" />
+    <img id="lol63" style="width: 276px; display:none;" src="/img/im50.jpg" />
+    <img id="lol64" style="width: 276px; display:none;" src="/img/im52.jpg" />
+    <img id="lol65" style="width: 276px; display:none;" src="/img/im53.jpg" />
+    <img id="lol66" style="width: 276px; display:none;" src="/img/im54.jpg" />
+    <img id="lol67" style="width: 276px; display:none;" src="/img/im56.jpg" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td style="vertical-align: top;">
+            <table>
+                <tr>
+                    <td style="border: 1px solid #ffcc01; width: 160px; vertical-align: top;"><!-- 3 featured -->
+                        <a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp0_id}" target="_blank">
+                            <img src="{$rp0_img}" style="border-style: none; width:{$rp0_w}px; height:{$rp0_h}px" />
+                        </a>
+                        <a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp0_id}" target="_blank">details</a>
+                        <br />
+                        <br />
+                        <a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp1_id}" target="_blank">
+                            <img src="{$rp1_img}" style="border-style: none; width:{$rp1_w}px; height:{$rp1_h}px" />
+                        </a>
+                        <a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp1_id}" target="_blank">
+                            details
+                        </a>
+                        <br />
+                        <br />
+                        <a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp2_id}" target="_blank">
+                            <img src="{$rp2_img}" style="border-style: none; width:{$rp2_w}px; height:{$rp2_h}px" />
+                        </a>
+                        <a href="/sys/aktualis_ajax_truck_details.php?lang=eng&id={$rp2_id}" target="_blank">
+                            details
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ffcc01; width: 160px;"><!-- links -->
+                        <div style="vertical-align: center">
+                            <a href="/sys/trucks_create_excel_sheet.php?trucksonly=1">
+                                <img src="/img/excel.png" style="width:22px" />
+                            </a>
+                            <a href="/sys/trucks_create_excel_sheet.php?trucksonly=1">
+                                Current truck stock
+                            </a>
+                        </div>
+                        <div style="vertical-align: center">
+                            <a href="/sys/trucks_create_excel_sheet.php?partsonly=1">
+                                <img src="/img/excel.png" style="width:22px" />
+                            </a>
+                            <a href="/sys/trucks_create_excel_sheet.php?partsonly=1">
+                                current part stock
+                            </a>
+                        </div>
+                        <!--div style="vertical-align: center">
+                            <a href="/Saxon%20karbantartasi%20szerzodes.pdf">
+                                <img src="/img/pdf.png" style="width:22px" />
+                            </a>
+                            <a href="/Saxon%20karbantartasi%20szerzodes.pdf">
+                                Karbantartási szerz.
+                            </a>
+                        </div-->
+                        <div style="vertical-align: center">
+                            <a href="/Bemutatkozo_level.pdf">
+                                <img src="/img/pdf.png" style="width:22px" />
+                            </a>
+                            <a href="/Bemutatkozo_level.pdf">
+                                Introduction text
+                            </a>
+                        </div>
+                        <div style="vertical-align: center">
+                            <a href="#">
+                                <img src="/img/video-icon.png" style="width:22px" />
+                            </a>
+                            <a href="#">
+                                Introduction video
+                            </a>
+                        </div>
+                        <div style="background: #ff0; width: 152px; height: 32px; font-weight: bold; font-size: 22px; text-align: center; margin-bottom: 2px; padding-left: 4px; padding-right: 4px;">
+                            BARTEL
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

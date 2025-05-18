@@ -1,0 +1,8 @@
+<form method="post" action="sys/promo_edit_save_changes.php" name="promo_form">
+{$DATA}
+<input type="hidden" value="1" name="promo_form" />
+<input type="submit" value="Változások mentése" />
+</form>
+<a href="sys/promo_image_upload.php" 
+   class="highslide" 
+   onclick="return hs.htmlExpand(this, {objectType: 'iframe', align: 'center', width: 500, height: 200}, {onClosed: function(){window.location.reload();}});" border="0">kép feltöltése</a>

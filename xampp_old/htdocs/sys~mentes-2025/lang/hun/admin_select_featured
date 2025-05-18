@@ -1,0 +1,21 @@
+<form action="">
+    <input type="hidden" name="page" value="admin_select_featured" />
+
+    <select name="truckid1">
+        {$SAXONID_LIST_1}
+    </select>
+
+    <select name="truckid2">
+        {$SAXONID_LIST_2}
+    </select>
+
+    <select name="truckid3">
+        {$SAXONID_LIST_3}
+    </select>
+
+    <select name="truckid4">
+        {$SAXONID_LIST_4}
+    </select>
+
+    <input type="submit" value="mentés"/>
+</form>

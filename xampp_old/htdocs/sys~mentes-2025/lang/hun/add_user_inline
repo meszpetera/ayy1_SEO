@@ -1,0 +1,103 @@
+<script type="text/javascript" src="js/jquery/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.maskedinput-1.3.js"></script>
+<script type="text/javascript">
+    jQuery.noConflict();
+    
+    jQuery(document).ready(function(){
+       //jQuery("#phone").mask("+99 99999999999",{completed:function(){}});
+
+    
+    
+    
+    }); 
+</script>
+
+
+<div class="error" style="height:40px; color:#900; font-weight:bold">
+{$ERROR}
+</div>
+<form style="width:90%" method="get" action="sys/registration.php?nocaptcha=true">
+  <input type="hidden" id="inline" name="inline" value="1" />
+  <div style="display:none">
+    <strong>Belépési adatok:</strong> (ezeket a rendszer automatikusan tölti ki)<!----------------------------------------->
+    <hr/>
+    <div style="height:48px; width:180px;">
+      <label>
+        Ügyintéző bejelentkezési neve:<br />
+        <input type="text" id="username" name="username" disabled />
+      </label>
+    </div>
+    
+    <div style="height:48px; width:180px; float:left;">
+      <label>
+        Jelszó:<br />
+        <input type="hidden" id="password" name="password" value="12345678" />
+        <input type="text" id="password" name="password_" value="" disabled />
+        
+      </label>
+    </div>
+    
+    <div style="height:48px;">
+      <label>
+        Jelszó újra:<br />
+        <input type="hidden" id="password_re" name="password_re" value="12345678" />
+        <input type="text" id="password_re" name="password_re_" value="" disabled />
+      </label>
+  </div>  
+  <br />
+  <br />
+  </div>
+<strong>Személyes adatok:</strong><!---------------------------------------->
+  <hr/>
+  <div style="height:48px; width:180px;">
+    <label>
+      Teljes név:<br />
+      <input type="text" id="realname" name="realname" value="{$REG_REALNAME}"/>
+    </label>
+  </div>
+  <div style="height:48px; width:180px;">
+    <label>
+      Beosztás:<br />
+      <input type="text" id="role" name="role" value="{$REG_ROLE}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px;">
+    <label>
+      Email:<br />
+      <input type="text" id="email" name="email" value="{$REG_EMAIL}"/>
+    </label>
+  </div>
+  
+  <div style="height:48px; width:180px; float:left;">
+    <label>
+      Telefon:<br />
+      <input type="text" id="phone" name="phone" value="{$REG_PHONE}"/>
+    </label>
+  </div>
+  <div style="height:48px;">
+    <label>
+      Fax:<br />
+      <input type="text" id="fax" name="fax"/>
+    </label>
+  </div>
+  
+  A telefonszámot "+országkód telefonszám" formában kell megadni<br/>(pl.: +36 801234567).<br />
+  <br />
+  <div style="display:none">
+  <strong>Céges adatok:</strong><!-------------------------------------------->
+  <hr/>
+  <div style="height:48px; width:180px;">
+    <label>
+      Cég neve:<br />
+      {$COMPANIES}
+    </label>
+  </div>
+
+  <br />
+  <hr />
+  <br />
+  </div>
+  <input type="hidden" value="1" name="adduser" id="adduser" />
+  <input type="submit" value="{$REG}" />
+</form>

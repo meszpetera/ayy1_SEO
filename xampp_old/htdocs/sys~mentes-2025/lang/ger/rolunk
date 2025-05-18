@@ -1,0 +1,37 @@
+<div id="dShowBox"> 
+  <div style="width:130px;margin:5px;font-size:10px;">
+    <p style="font-weight:bold;line-height:13px;text-align:left;">{$finished}</p>
+    <p style="text-align:left;line-height:13px;">{$zoom}</p>
+  </div>
+  <div style="width:140px;height:90px;position:absolute;right:10px;top:3px;font-size:10px;vertical-align:middle;">
+    <a href="{$imagelink}" class="highslide" onclick="return hs.expand(this);" id="promo_link">
+      <img alt="" src="{$defaultpic}" style="width:140px;height:90px;" id="promo_image" />
+    </a>
+    <input type="hidden" value="{$defaultid}" id="promo_id" /> 
+  </div>
+</div>
+<p style="font-size: 32px; padding: 0 0 0 0; margin: 0 0 0 0">ÜBER UNS</p>
+<script type="text/javascript">setTimeout("change_to_next()", speed);</script>
+<div style="margin-top:30px;">
+<h1>SEHR GEEHRTE ANWENDER,</h1>
+
+gestatten Sie uns bitte, die Gesellschaft mit einigen Sätzen kurz vorzustellen. Die Saxon Ipari Kereskedelmi és Szolgáltató Részvénytársaság ist ein ungarisches Familienunternehmen, das schon auf eine 15 jährige Vergangenheit zurückblicken kann. Die 1990 mit 3 Mitarbeitern gegründete Gesellschaft beschäftigte 1992 – dank der vielen Arbeit und kundenzentrischen Denkungsart – schon 6 Mitarbeiter, hatte eine eigene Niederlassung und drei Servicewagen. Infolge der ständigen und überlegten Entwicklungen sowie wegen der in der Branche damals noch ungewöhnlich schnellen und flexiblen Erfüllung der Aufträge erlebte die neue Gesellschaft eine besonders schnelle und stabile Entwicklung: wir bauten eine neue Niederlassung, vermehrten den Personalstand, den Servicewagenpark sowie der Warenbestand und auch die Anzahl unserer Partner erhöhte sich ständig. Als die sich 1998 in Aktiengesellschaft umgewandelte Firma auf dem internationalen Markt erschien, erweiterte sie ihre Tätigkeiten mit einem neuen Profil und begann westliche und japanische Ersatzteile zu verkaufen sowie neue und überholte Hubwagen und Palettenheber zu verkaufen und zu vermieten. Inzwischen hat die Gesellschaft den Kundenansprüchen entsprechend mit dem Ausbau von regionalen Vertretungen begonnen, der nach wie vor fortgesetzt wird. Zurzeit verfügt die Gesellschaft über 4 Niederlassungen, 16 Servicewagen, 450 eigene Hubwagen und mehr als 60 Angestellten und ist damit eine der unabhängigen Hubwagendienstleistungsunternehmen, die über die größte Infrastruktur im Land verfügen. <br />
+2005 hat die Gesellschaft mit dem Ausbau der Vertretungen in den Nachbarländern begonnen. Zurzeit haben wir Geschäftsverbindungen in Serbien und in der Slowakei, wo der Ausbau der regionalen Vertretungen schon im Gange ist. Wir haben aber vor, auch die weiteren mitteleuropäischen Länder einzuschalten. Dazu suchen wir Partner. <br />
+In der Niederlassung Vecsés sind ein Überholungsbetrieb, ein Werkstatt, ein Ausstellungssaal und ein der größten Ersatzteilewarenhäuser und Hubwagendepot des Landes zu finden. 8 Servicewagen und 35 erfahrene Spezialisten stehen hier unseren Partnern und den Wiederverkäufern zur Verfügung. In den regionalen Vertretungen in Székesfehérvár, Pécs und Eger stehen je 2 Servicewagen mit je zwei Spezialisten sowie je ein Ausstellungssaal und ein Ersatzteilewarenhaus, während in dem Bezirk von Békéscsaba, Nyergesújfalu, Nyíregyháza és Szekszárd je ein Servicewagen sicher, dass die Versorgung unserer Kunden mit möglichst niedrigen zusätzlichen Kosten realisiert werden kann. 
+<p>
+Unsere Beziehungen sind fast zu allen ungarischen und ausländischen Zulieferanten, die sich in den vergangenen Jahren mit uns entwickelten und dynamisch immer größer werden, von Anfang an ungeschwächt. Unsere Kunden sind sich dynamisch entwickelnde Privat-, Staats- und multinationale Unternehmen von verschiedener Größe nahezu aus allen Wirtschaftsbereichen. 
+</p>
+<p>
+Wir verfolgen ständig die technische Entwicklung: sowohl durch Teilnahme an Fachausstellungen, als auch durch regelmäßige Weiterbildung der Monteure oder ständige Entwicklung der Ausstattungen, Werkzeuge und Instrumente. Im Laufe der Tätigkeiten und beim Einkauf der Ersatzteile berücksichtigen wir bis zum äußersten die Ansprüche und Bedürfnisse unserer Partner. 
+</p>
+<p>
+Die Qualität spielte immer eine wichtige Rolle im Leben der Gesellschaft, seit 1998 arbeiten wir deshalb laut Vorschriften des Qualitätsmanagementsystems ISO 9002. 
+</p>
+<p>
+Unser Finanzierungspartner bietet günstige Leasing- und Vermietungskonstruktionen unseren Kunden an. Erweckte unsere Informationsschrift Ihr Interesse, wenden Sie sich bitte vertrauensvoll an unsere Mitarbeiter oder suchen Sie eine unserer Niederlassungen auf. 
+</p>
+
+<p style="margin-top:40px">
+<img src="img/rolunk_alul.jpg" alt="" width="860" height="305" border="0" />
+</p>
+</div>

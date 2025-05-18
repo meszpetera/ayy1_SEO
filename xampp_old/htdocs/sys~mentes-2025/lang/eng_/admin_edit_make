@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    function addRow()
+    {
+        var id = document.getElementById('count').innerHTML;
+
+        document.getElementById('table1').innerHTML += 				
+        '<tr><td><input style="width:200px;" name="makehunX' + id + '" value="" width="60" /></td>' + 
+        '<td><input style="width:200px;" name="makeengX' + id + '" value="" width="28" /></td>' +
+        '<td><input style="width:200px;" name="makegerX' + id + '" value="" width="30" /></td></tr>';
+                    
+        document.getElementById('count').innerHTML = (parseInt(id)+1).toString();
+    }
+</script>
+
+<p style="font-size: 32px; padding: 0 0 0 0; margin: 0 0 0 0">GYÁRTÓK SZERKESZTÉSE</p>
+<br /><br />
+<a href="?page=admin">vissza</a>
+<br/>
+
+<form action="sys/edit_make.php" accept-charset="UTF-8" method="post">
+  <table id="table1">
+{$LIST}
+  </table><br />
+  <div style="visibility:hidden" id="count">0</div>
+  <a href="javascript:void(0);" onClick="addRow()">új gyártó</a><br />
+  <br />
+  <input type="submit" value="Mentés" />
+</form>

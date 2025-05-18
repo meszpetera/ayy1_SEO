@@ -1,0 +1,56 @@
+<p>
+<a href="/?page=offer_requests&lang=hun">Vissza</a>
+<table style="font-weight:bold;border-spacing:10px;">
+<tr>
+<td style="text-align:center;">
+{$ADD}<br />
+Meglévõ targoncák hozzáadása
+</td>
+<td style="text-align:center;">
+{$ADDTRUCK}<br />
+Új targonca felvitele
+</td>
+<td style="text-align:center;">
+{$OPTIONS}<br />
+Beállítások
+</td>
+<td style="text-align:center;">
+{$VIEW}<br />
+Megtekintés
+</td>
+<!--td style="text-align:center;">
+{$CLOSE}
+</td-->
+<td style="text-align:center;">
+{$MAIL}<br />
+Küldés emailben
+</td>
+</tr>
+</table>
+</p>
+<label>
+Kísérőszöveg az ajánlathoz:<br />
+<textarea style="width:100%;height:70px;" id="offer_comment">{$OFFER_COMMENT}</textarea>
+</label>
+<div style="padding:4px;margin-top:10px;margin-bottom:10px;border:1px solid #000;">
+  <span style="font-weight:bold;font-size:12px;">Az ajánlatot kérő megjegyzései:</span><br />
+  {$COMMENTS}
+</div>
+<table style="width:740px;margin-left:auto;margin-right:auto;">
+<tr>
+  <td style="text-align:center;">
+  {$DATA}
+  </td>
+</tr>
+<tr>
+  <td>
+    <div id="offer_data">
+
+    </div>
+  </td>
+</tr>
+</table>
+<input type="hidden" value="{$ACTUAL}" id="actual_request" />
+<script type="text/javascript">
+  load_truck_info();
+</script>

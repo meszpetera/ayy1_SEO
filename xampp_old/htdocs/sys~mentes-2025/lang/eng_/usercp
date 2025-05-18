@@ -1,0 +1,37 @@
+<link href="css/styles_usercp.css" rel="stylesheet" type="text/css" />
+<form method="post" action="sys/user_update.php">
+<p class="main_title">{$TITLE}</p>
+<div style="font-weight:bold;text-align:center;color:#f00;width:100%;">{$ERROR}</div>
+<p class="sub_title">{$PERSONAL}</p>
+<hr style="width:100%;height:3px;background-color:#000;color:#000;margin:0px;" />
+<div class="usercp_section">
+  Full name:<br />
+  <input type="text" disabled class="usercp_input_disabled" value="{$FULLNAME}"/><br />
+  Email address:<br />
+  <input type="text" class="usercp_input" value="{$EMAIL}" name="email" /><br />
+  Phone:<br />
+  <input type="text" class="usercp_input" value="{$PHONE}" name="phone" /><br />
+  Fax:<br />
+  <input type="text" class="usercp_input" value="{$FAX}" name="fax" /><br />
+  <hr style="width:300px;height:2px;background-color:#000;color:#000;margin:0px;margin-bottom:10px;" />
+  Current password:<br />
+  <input type="password" class="usercp_input" name="oldpass"/><br />
+  <div style="float:left;margin-right:40px;">
+    New password:<br />
+    <input type="password" class="usercp_input" name="pass" />
+  </div>
+  <div style="float:left;">
+    New password again:<br />
+    <input type="password" class="usercp_input" name="passre" /><br />
+  </div>
+  <div style="clear:both;">
+    <input style="width:150px;" type="submit" value="Update" />
+  </div>
+</div>
+</form>
+<p class="sub_title">{$TRACE}</p>
+<hr style="width:100%;height:3px;background-color:#000;color:#000;margin:0px;" />
+<div class="usercp_section">
+{$REQUESTLIST}
+</div>
+<!--<a href="sys/logout.php" styl>{$LOGOUT}</a>-->
